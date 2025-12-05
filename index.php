@@ -38,6 +38,16 @@ try {
     $ownerController->showOwner();
     break;
 
+    case 'booksList':
+    $bookController = new BookController();
+    $bookController->books();
+    break;
+
+    case 'book':
+    $bookController = new BookController();
+    $bookController->book();
+    break;
+
     case 'logout':
     $authController = new AuthController();
     $authController->logout();
