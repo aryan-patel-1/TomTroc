@@ -28,7 +28,7 @@ class AuthController
 
             } else {
                 // Création d'un nouveau compte utilisateur
-                $user = UserModel::create($username, $email, $password);
+                $user = UserModel::createUser($username, $email, $password);
 
                 // Sécurisation de la session
                 session_regenerate_id(true);
