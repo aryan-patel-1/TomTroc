@@ -11,7 +11,7 @@
             Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres.
         </p>
 
-        <a href="?page=books" class="btn-primary">Découvrir</a>
+        <a href="?page=booksList" class="btn-primary">Découvrir</a>
     </div>
 
     <div class="hero-right">
@@ -58,7 +58,7 @@
 
     </div>
 
-    <a href="?page=books" class="tt-see-all">Voir tous les livres</a>
+    <a href="?page=booksList" class="tt-see-all">Voir tous les livres</a>
 
 </section>
 
@@ -81,11 +81,15 @@
 
     </div>
 
-    <a href="?page=books" class="tt-btn-secondary">Voir tous les livres</a>
+    <a href="?page=booksList" class="tt-btn-secondary">Voir tous les livres</a>
 
 </section>
 
 <!-- NOS VALEURS -->
+<section class="tt-banner">
+    <img src="images/valeur.png" alt="Bibliothèque et livres">
+</section>
+
 <section class="tt-values">
     <div class="tt-values-content">
         <h2>Nos valeurs</h2>

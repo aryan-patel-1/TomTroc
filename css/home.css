@@ -1,0 +1,416 @@
+/* HERO */
+
+.home-hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 60px;
+    gap: 90px;
+    background: #F5F3EF; 
+    flex-wrap: wrap;
+}
+
+.hero-left {
+    max-width: 360px;
+}
+
+.hero-left h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 48px;
+    margin-bottom: 18px;
+    color: #000;
+}
+
+.hero-left p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #292929;
+    line-height: 1.4;
+    margin-bottom: 25px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 18px 36px;
+    background: #00AC66;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    text-decoration: underline;
+}
+
+.hero-right {
+    text-align: right;
+}
+
+.hero-img {
+    width: 404px;
+    height: 539px;
+    object-fit: cover;
+}
+
+.hero-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    color: #A6A6A6;
+    margin-top: 8px;
+}
+
+/* DERNIERS LIVRES */
+
+.tt-last-books {
+    margin-top: 80px;
+    padding: 0 60px;
+    text-align: center;
+}
+
+.tt-last-books h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 32px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* GRILLE 4 COLONNES */
+.tt-books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    gap: 38px;
+    justify-content: center;
+}
+
+/* CARTE LIVRE */
+.tt-book-card {
+    background: #FFFFFF;
+    border-radius: 0 0 14px 14px;
+    overflow: hidden;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.08);
+    padding-bottom: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 200px;
+    height: 324px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.tt-book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGE */
+.tt-book-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* TITRE */
+.tt-book-card h3 {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    margin: 12px 14px 4px;
+}
+
+/* AUTEUR */
+.tt-book-card .author {
+    color: #7A7A7A;
+    margin: 0 14px;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+}
+
+/* VENDEUR */
+.tt-book-card .seller {
+    margin: 6px 14px 0;
+    font-size: 10px;
+    font-family: "Inter", sans-serif;
+    font-style: italic;
+    color: #7A7A7A;
+}
+
+.tt-book-card .seller span {
+    font-weight: 400;
+}
+
+/* PAGE DETAIL LIVRE */
+.tt-book-detail {
+    max-width: 1280px;
+    margin: 40px auto 60px;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.tt-book-breadcrumb {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    color: #6B6B6B;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tt-book-breadcrumb a {
+    color: #6B6B6B;
+    text-decoration: none;
+}
+
+.tt-book-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.tt-book-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 36px;
+    align-items: start;
+}
+
+.tt-book-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0px 8px 26px rgba(0, 0, 0, 0.12);
+}
+
+.tt-book-content h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0;
+    color: #111;
+}
+
+.tt-book-author {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    color: #9A9A9A;
+    margin: 6px 0 18px;
+}
+
+.tt-book-separator {
+    width: 40px;
+    height: 2px;
+    background: #E0E0E0;
+    margin-bottom: 18px;
+}
+
+.tt-book-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tt-book-section-title {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4A4A4A;
+    margin: 0 0 6px;
+}
+
+.tt-book-section p {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.tt-book-owner {
+    margin-top: 28px;
+}
+
+.tt-book-owner-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #F7F7F7;
+    border-radius: 10px;
+    border: 1px solid #E7E7E7;
+    color: inherit;
+    text-decoration: none;
+}
+
+.tt-book-owner-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #DDD;
+}
+
+.tt-book-owner-name {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    color: #1F1F1F;
+}
+
+.tt-book-cta {
+    margin-top: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 28px;
+    background: #00AC66;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 172, 102, 0.24);
+}
+
+.tt-book-cta:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 960px) {
+    .tt-book-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .tt-book-detail {
+        padding: 0 20px;
+    }
+
+    .tt-book-image img {
+        max-height: 520px;
+    }
+}
+
+/* BOUTON VOIR TOUS LES LIVRES */
+.tt-see-all {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    padding: 18px 36px;
+    background: #00AC66;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    width: fit-content;
+    margin: 32px auto 0;
+}
+
+.tt-see-all:hover {
+    text-decoration: underline;
+}
+
+/* COMMENT ÇA MARCHE ?*/
+.tt-how {
+    background: #F7F5F1;
+    padding: 90px;
+    text-align: center;
+}
+
+.tt-how-steps {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.tt-step {
+    width: 220px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.05);
+}
+
+.tt-btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 36px;
+    background: #F5F3EF;
+    color: #00AC66;
+    border: 2px solid #00AC66;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    width: fit-content;
+    margin: 32px auto 0;
+}
+
+.tt-btn-secondary:hover {
+    text-decoration: underline;
+}
+
+/* BANNIÈRE */
+.tt-banner img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+/* NOS VALEURS */
+.tt-values {
+    padding: 80px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    background: #F5F3EA;
+}
+
+.tt-values-content {
+    max-width: 720px;
+    width: 100%;
+    text-align: left;
+}
+
+.tt-values-content p {
+    color: #454545;
+    line-height: 1.7;
+    margin: 0 0 18px 0;
+}
+
+.tt-values-content p:last-of-type {
+    margin-bottom: 0;
+}
+
+.tt-values h2 {
+    font-size: 30px;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 18px;
+}
+
+.tt-values-signature {
+    font-style: italic;
+    color: #8B8B8B;
+    margin-top: 10px;
+}
+
+.tt-heart {
+    align-self: flex-start;
+    width: 90px;
+    height: auto;
+    object-fit: contain;
+    margin-top: 16px;
+    margin-left: 1012px;
+}

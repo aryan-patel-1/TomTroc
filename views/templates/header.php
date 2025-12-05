@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tom Troc</title>
+    <?php $pageTitle = $pageTitle ?? ($title ?? 'Tom Troc'); ?>
+    <title><?= htmlspecialchars($pageTitle) ?></title>
     <link rel="icon" type="image/svg" href="images/logo-footer.svg">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -13,13 +14,13 @@
 <header class="tt-header">
 
     <div class="tt-left">
-        <div class="tt-logo">
+        <a href="?page=home" class="tt-logo" aria-label="Accueil Tom Troc">
             <img src="images/logo.svg" alt="Logo" class="tt-logo-img">
-        </div>
+        </a>
 
         <nav class="tt-nav-left">
             <a href="?page=home">Accueil</a>
-            <a href="?page=books">Nos livres à l'échange</a>
+            <a href="?page=booksList">Nos livres à l'échange</a>
         </nav>
     </div>
 
@@ -35,7 +36,11 @@
             Mon compte
         </a>
 
-        <a href="?page=register" class="tt-login">Connexion</a>
+        <?php if (!empty($_SESSION['user_id'])): ?>
+            <a href="?page=logout" class="tt-login">Déconnexion</a>
+        <?php else: ?>
+            <a href="?page=login" class="tt-login">Connexion</a>
+        <?php endif; ?>
     </nav>
 
 </header>

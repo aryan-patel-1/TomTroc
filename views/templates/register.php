@@ -4,13 +4,17 @@
 
         <h1>Inscription</h1>
 
+        <?php if (!empty($error)): ?>
+            <p class="tt-error"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
+
         <form method="POST" action="?page=register">
 
-            <label for="pseudo">Pseudo</label>
-            <input type="text" id="pseudo" name="pseudo" required>
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>" required>
 
             <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
 
             <label for="password">Mot de passe</label>
             <input type="password" id="password" name="password" required>

@@ -9,20 +9,39 @@ try {
     switch ($page) {
 
     case 'home':
-        $homeController = new HomeController();
-        $homeController->showHome();
-        break;
+    $homeController = new HomeController();
+    $homeController->showHome();
+    break;
 
     case 'login':
-    $controller = new AuthController();
-    $controller->login();
+    $logController = new AuthController();
+    $logController->login();
     break;
 
     case 'register':
-    $controller = new AuthController();
-    $controller->register();
+    $registerController = new AuthController();
+    $registerController->register();
     break;
 
+    case 'account':
+    $accountController = new AccountController();
+    $accountController->showAccount();
+    break;
+
+    case 'messages':
+    $messagesController = new MessageController();
+    $messagesController->showMessages();
+    break;
+
+    case 'owner':
+    $ownerController = new OwnerController();
+    $ownerController->showOwner();
+    break;
+
+    case 'logout':
+    $authController = new AuthController();
+    $authController->logout();
+    break;
 
         default:
             throw new Exception("La page demandée n'existe pas.");

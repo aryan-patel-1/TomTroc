@@ -4,10 +4,14 @@
 
         <h1>Connexion</h1>
 
+        <?php if (!empty($error)): ?>
+            <p class="tt-error"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
+
         <form method="POST" action="?page=login">
 
             <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
 
             <label for="password">Mot de passe</label>
             <input type="password" id="password" name="password" required>

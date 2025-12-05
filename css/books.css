@@ -1,0 +1,156 @@
+/* LISTE DES LIVRES ------------------------------------------------------- */
+
+.tt-books-page {
+    padding: 90px 40px 120px;
+}
+
+.books-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+}
+
+.tt-books-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+}
+
+.tt-books-header h1 {
+    margin: 0;
+}
+
+/* Barre de recherche - affichage uniquement */
+.tt-search-bar {
+    margin: 0;
+    display: flex;
+}
+
+.tt-search-bar input {
+    width: 320px;
+    height: 44px;
+    border: 1px solid #E0DBD0;
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 0 14px 0 42px;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    color: #999;
+    background-image: url('../images/loupe.svg');
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    background-size: 16px 16px;
+}
+
+.tt-search-bar input:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+}
+
+/* Grille */
+.tt-books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    width: 100%;
+    justify-items: center;
+}
+
+.tt-book-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Carte livre */
+.tt-book-card {
+    background: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #E0DBD0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.tt-book-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.tt-book-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.tt-book-info {
+    padding: 14px 14px 16px;
+}
+
+/* Titre livre */
+.tt-book-card h3 {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 4px 0;
+}
+
+/* Auteur */
+.tt-book-card .author {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    color: #7A7A7A;
+}
+
+/* Vendu par */
+.tt-book-card .seller {
+    margin: 0;
+    font-size: 10px;
+    font-family: "Inter", sans-serif;
+    font-style: italic;
+    color: #8C8C8C;
+}
+
+.tt-book-card .seller span {
+    font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+    .tt-books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .tt-books-page {
+        padding: 70px 20px 100px;
+    }
+
+    .tt-books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+    }
+
+    .tt-search-bar {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 520px) {
+    .tt-search-bar input {
+        width: 100%;
+    }
+}

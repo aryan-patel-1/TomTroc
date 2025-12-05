@@ -1,11 +1,11 @@
 <?php
 
-class HomeController
+class MessageController
 {
-    public function showHome()
+    public function showMessages() : void
     {
         require_once './views/templates/header.php';
-        require_once './views/templates/home.php';
+        require_once './views/templates/messages.php';
         require_once './views/templates/footer.php';
     }
 }

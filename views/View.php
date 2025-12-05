@@ -67,6 +67,3 @@ class View
         return TEMPLATE_VIEW_PATH . $viewName . '.php';
     }
 }
-
-
-
