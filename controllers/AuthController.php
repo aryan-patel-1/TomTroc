@@ -6,6 +6,7 @@ class AuthController
     // Affiche la page d'inscription et gère la création d'un nouveau compte utilisateur
     public function register()
     {
+        $error = null;
         // Quand le formulaire est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -27,8 +28,8 @@ class AuthController
                 $error = 'Cet email est déjà utilisé.';
 
             } else {
-                // Création d'un nouveau compte utilisateur
-                $user = UserModel::createUser($username, $email, $password);
+                // Création d'un nouveau compte utilisateur (photo non fournie à l'inscription)
+                $user = UserModel::createUser($username, $email, $password, null);
 
                 // Sécurisation de la session
                 session_regenerate_id(true);
@@ -43,14 +44,14 @@ class AuthController
             }
         }
 
-        // Affichage de la page d'inscription
-        require_once './views/templates/header.php';
-        require_once './views/templates/register.php';
-        require_once './views/templates/footer.php>';
+        // Affichage de la page d'inscription via le système de vues
+        $view = new View('Inscription');
+        $view->render('register', ['error' => $error]);
     }
     //Affiche la page de login et gère la tentative de connexion
     public function login()
     {
+        $error = null;
         // Si le formulaire est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -88,10 +89,9 @@ class AuthController
             }
         }
 
-        // Inclusion des templates (header page login footer)
-        require_once './views/templates/header.php';
-        require_once './views/templates/login.php';
-        require_once './views/templates/footer.php';
+        // Rendu de la page de connexion via le système de vues
+        $view = new View('Connexion');
+        $view->render('login', ['error' => $error]);
     }
 
     /**

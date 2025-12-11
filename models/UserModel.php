@@ -7,6 +7,7 @@ class UserModel
     public string $email;
     public string $passwordHash;
     public string $createdAt;
+    public ?string $picture;
 
     public function __construct(array $row)
     {
@@ -15,6 +16,7 @@ class UserModel
         $this->email = $row['email'];
         $this->passwordHash = $row['password_hash'];
         $this->createdAt = $row['date_time'];
+        $this->picture = $row['user_picture'] ?? null;
     }
 
     private static function db(): PDO
@@ -53,7 +55,7 @@ class UserModel
      * Crée un nouvel utilisateur en base de données
      * Retourne l'objet UserModel correspondant à ce nouvel utilisateur
      */
-    public static function createUser(string $username, string $email, string $password): UserModel
+    public static function createUser(string $username, string $email, string $password, ?string $picture = null): UserModel
     {
         // hash le mot de passe avant de le stocker
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
@@ -63,8 +65,8 @@ class UserModel
 
         // Préparation de l'INSERT avec les paramètres
         $stmt = $db->prepare(
-            'INSERT INTO user (username, email, password_hash) 
-             VALUES (:username, :email, :password_hash)'
+            'INSERT INTO user (username, email, password_hash, user_picture) 
+             VALUES (:username, :email, :password_hash, :user_picture)'
         );
 
         // Exécution de la requête avec les valeurs à insérer
@@ -72,6 +74,7 @@ class UserModel
             'username' => $username,
             'email'=> $email,
             'password_hash'=> $passwordHash,
+            'user_picture' => $picture ?? '',
         ]);
 
         // Récupère l'id du dernier enregistrement inséré

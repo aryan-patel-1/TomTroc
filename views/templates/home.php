@@ -1,3 +1,9 @@
+<?php
+// Données injectées par le contrôleur : derniers livres et propriétaires
+$latestBooks = $books ?? [];
+$ownersById = $owners ?? [];
+?>
+
 <main class="tt-home">
 
 <!-- HERO -->
@@ -26,39 +32,37 @@
 
     <h2>Les derniers livres ajoutés</h2>
 
+    <?php if (!empty($latestBooks)): ?>
     <div class="tt-books-grid">
-
-        <div class="tt-book-card">
-            <img src="images/wabi.png" alt="Wabi Sabi">
-            <h3>Wabi Sabi</h3>
-            <p class="author">Beth Kempton</p>
-            <p class="seller">Vendu par : <span>Alexlecture</span></p>
-        </div>
-
-        <div class="tt-book-card">
-            <img src="images/milk.png" alt="Milk & Honey">
-            <h3>Milk & Honey</h3>
-            <p class="author">Rupi Kaur</p>
-            <p class="seller">Vendu par : <span>Hugo1990_12</span></p>
-        </div>
-
-        <div class="tt-book-card">
-            <img src="images/esther.png" alt="Alabaster">
-            <h3>Alabaster</h3>
-            <p class="author">Esther</p>
-            <p class="seller">Vendu par : <span>CamilleClubLit</span></p>
-        </div>
-
-        <div class="tt-book-card">
-            <img src="images/kinfolk.png" alt="The Kinfolk Table">
-            <h3>The Kinfolk Table</h3>
-            <p class="author">Nathan Williams</p>
-            <p class="seller">Vendu par : <span>Nathalire</span></p>
-        </div>
-
+        <?php foreach ($latestBooks as $book): ?>
+            <?php
+                // Détermine le nom du propriétaire affiché
+                $owner = $ownersById[$book->ownerId] ?? null;
+                $ownerName = 'Membre TomTroc';
+                if ($owner) {
+                    $ownerName = $owner->username;
+                } elseif ($book->ownerId) {
+                    $ownerName = 'Utilisateur #' . $book->ownerId;
+                }
+                // Image de couverture
+                $cover = $book->coverUrl ?: 'images/kinfolk.png';
+            ?>
+            <a
+                class="tt-book-link"
+                href="?page=book&id=<?= htmlspecialchars((string) $book->id) ?>"
+                data-title="<?= htmlspecialchars($book->title) ?>"
+            >
+                <article class="tt-book-card">
+                    <img src="<?= htmlspecialchars($cover) ?>" alt="<?= htmlspecialchars($book->title) ?>">
+                    <h3><?= htmlspecialchars($book->title) ?></h3>
+                    <p class="author"><?= htmlspecialchars($book->author) ?></p>
+                    <p class="seller">Vendu par : <span><?= htmlspecialchars($ownerName) ?></span></p>
+                </article>
+            </a>
+        <?php endforeach; ?>
     </div>
-
     <a href="?page=booksList" class="tt-see-all">Voir tous les livres</a>
+    <?php endif; ?>
 
 </section>
 

@@ -60,6 +60,12 @@
     font-weight: 600;
     border: none;
     cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tt-auth-left .btn-primary:hover {
+    background: #006D41;
+    color: #FFFFFF;
 }
 /* Texte sous le bouton */
 .tt-auth-switch {

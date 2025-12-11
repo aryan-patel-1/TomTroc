@@ -29,7 +29,7 @@
     margin: 0;
 }
 
-/* Barre de recherche - affichage uniquement */
+/* Barre de recherche */
 .tt-search-bar {
     margin: 0;
     display: flex;
@@ -44,16 +44,20 @@
     padding: 0 14px 0 42px;
     font-size: 14px;
     font-family: "Inter", sans-serif;
-    color: #999;
+    color: #1B1B1B;
     background-image: url('../images/loupe.svg');
     background-repeat: no-repeat;
     background-position: 14px center;
     background-size: 16px 16px;
 }
 
-.tt-search-bar input:disabled {
-    cursor: not-allowed;
-    opacity: 0.9;
+.tt-search-bar input::placeholder {
+    color: #9B9B9B;
+}
+
+.tt-search-bar input:focus {
+    outline: 2px solid #E0DBD0;
+    outline-offset: 2px;
 }
 
 /* Grille */
@@ -125,6 +129,13 @@
 
 .tt-book-card .seller span {
     font-weight: 400;
+}
+
+.tt-search-empty {
+    margin: 12px 0 0;
+    color: #7A7A7A;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
 }
 
 @media (max-width: 1024px) {

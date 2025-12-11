@@ -40,10 +40,13 @@
     border-radius: 10px;
     font-weight: 600;
     font-size: 16px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .btn-primary:hover {
-    text-decoration: underline;
+    background: #006D41;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .hero-right {
@@ -82,16 +85,18 @@
     margin-right: auto;
 }
 
-/* GRILLE 4 COLONNES */
-.tt-books-grid {
+/* Grille "Derniers livres" */
+.tt-last-books .tt-books-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 24px;
-    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 /* CARTE LIVRE */
-.tt-book-card {
+.tt-last-books .tt-book-card {
     background: #FFFFFF;
     border-radius: 0 0 14px 14px;
     overflow: hidden;
@@ -104,20 +109,20 @@
     text-align: left;
 }
 
-.tt-book-card:hover {
+.tt-last-books .tt-book-card:hover {
     transform: translateY(-4px);
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 /* IMAGE */
-.tt-book-card img {
+.tt-last-books .tt-book-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
 /* TITRE */
-.tt-book-card h3 {
+.tt-last-books .tt-book-card h3 {
     font-family: "Inter", sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -126,7 +131,7 @@
 }
 
 /* AUTEUR */
-.tt-book-card .author {
+.tt-last-books .tt-book-card .author {
     color: #7A7A7A;
     margin: 0 14px;
     font-size: 14px;
@@ -134,7 +139,7 @@
 }
 
 /* VENDEUR */
-.tt-book-card .seller {
+.tt-last-books .tt-book-card .seller {
     margin: 6px 14px 0;
     font-size: 10px;
     font-family: "Inter", sans-serif;
@@ -142,7 +147,7 @@
     color: #7A7A7A;
 }
 
-.tt-book-card .seller span {
+.tt-last-books .tt-book-card .seller span {
     font-weight: 400;
 }
 
@@ -277,10 +282,14 @@
     font-weight: 700;
     font-size: 15px;
     box-shadow: 0px 8px 20px rgba(0, 172, 102, 0.24);
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tt-book-cta:hover {
-    text-decoration: underline;
+    background: #006D41;
+    color: #FFFFFF;
+    box-shadow: 0px 8px 20px rgba(0, 109, 65, 0.3);
+    text-decoration: none;
 }
 
 @media (max-width: 960px) {
@@ -311,10 +320,13 @@
     font-size: 16px;
     width: fit-content;
     margin: 32px auto 0;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .tt-see-all:hover {
-    text-decoration: underline;
+    background: #006D41;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 /* COMMENT ÇA MARCHE ?*/
@@ -353,10 +365,14 @@
     font-size: 16px;
     width: fit-content;
     margin: 32px auto 0;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .tt-btn-secondary:hover {
-    text-decoration: underline;
+    background: #006D41;
+    color: #FFFFFF;
+    border-color: #006D41;
+    text-decoration: none;
 }
 
 /* BANNIÈRE */

@@ -96,12 +96,15 @@
     font-weight: 700;
     font-size: 15px;
     text-decoration: none;
-    transition: transform 0.1s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.1s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .tt-owner-message:hover {
-    background: #F6FFFA;
-    box-shadow: 0px 6px 18px rgba(0, 172, 102, 0.14);
+    background: #006D41;
+    color: #FFFFFF;
+    border-color: #006D41;
+    transform: translateY(-1px);
+    box-shadow: 0px 10px 22px rgba(0, 109, 65, 0.22);
 }
 
 .tt-owner-library {

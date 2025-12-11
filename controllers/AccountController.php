@@ -14,10 +14,13 @@ class AccountController
         if (!$user) {
             throw new Exception('Utilisateur introuvable.');
         }
-        $books = []; 
+        // Récupère les livres appartenant à l'utilisateur.
+        $books = BookModel::findByOwnerId((int) $user->id);
 
-        require_once './views/templates/header.php';
-        require_once './views/templates/account.php';
-        require_once './views/templates/footer.php';
+        $view = new View('Mon compte');
+        $view->render('account', [
+            'user' => $user,
+            'books' => $books,
+        ]);
     }
 }
