@@ -120,7 +120,9 @@
 
 /* FOOTER */
 .tt-footer {
-    width: 100%;
+    width: 100vw; /* full bleed despite body max-width */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     background: #FFFFFF;
     display: flex;
     align-items: center;
@@ -223,6 +225,9 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
     }
 
     .tt-footer-right {

@@ -6,7 +6,7 @@ class HomeController
     {
         $latestBooks = BookModel::findLatest(4);
 
-        // Pré-charge les propriétaires des livres récents.
+        // precharge les proprietaires des livres recents
         $owners = [];
         foreach ($latestBooks as $book) {
             if ($book->ownerId && !isset($owners[$book->ownerId])) {

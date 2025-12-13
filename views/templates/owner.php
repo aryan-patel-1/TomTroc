@@ -55,7 +55,7 @@ if (!empty($memberSince)) {
                         <?php foreach ($booksList as $book): ?>
                         <?php
                             $cover = $book->coverUrl ?: 'images/kinfolk.png';
-                            $description = $book->description ?: 'Description non disponible.';
+                            $description = $book->description ?: 'Description non disponible';
                         ?>
                         <tr>
                             <td class="tt-owner-cover">

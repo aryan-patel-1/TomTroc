@@ -17,15 +17,15 @@ class AuthController
 
             // Vérification des champs obligatoires
             if ($username === '' || $email === '' || $password === '') {
-                $error = 'Merci de remplir tous les champs.';
+                $error = 'Merci de remplir tous les champs';
 
             // Vérification de la validité de l'adresse email
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $error = 'Adresse email invalide.';
+                $error = 'Adresse email invalide';
 
             // Vérifie si un compte existe déjà avec cet email
             } elseif (UserModel::findByEmail($email)) {
-                $error = 'Cet email est déjà utilisé.';
+                $error = 'Cet email est déjà utilisé';
 
             } else {
                 // Création d'un nouveau compte utilisateur (photo non fournie à l'inscription)
@@ -61,11 +61,11 @@ class AuthController
 
             // Vérification des champs vides
             if ($email === '' || $password === '') {
-                $error = 'Merci de remplir tous les champs.';
+                $error = 'Merci de remplir tous les champs';
 
             // Vérification du format de l'adresse email
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $error = 'Adresse email invalide.';
+                $error = 'Adresse email invalide';
 
             } else {
                 // Tentative d’authentification via UserModel
@@ -85,7 +85,7 @@ class AuthController
                     exit;
                 }
                 // En cas d'échec de l'authentification
-                $error = 'Email ou mot de passe incorrect.';
+                $error = 'Email ou mot de passe incorrect';
             }
         }
 

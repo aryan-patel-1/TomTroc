@@ -3,6 +3,8 @@ $username = $user->username ?? 'Utilisateur';
 $userEmail = $user->email ?? 'email@example.com';
 $memberSince = $user->createdAt ?? '';
 $userPicture = !empty($user->picture) ? $user->picture : 'images/logo-footer.svg';
+$profileError = $error ?? null;
+$profileSuccess = $success ?? false;
 $memberSinceText = 'Membre TomTroc';
 if (!empty($memberSince)) {
     $timestamp = strtotime($memberSince);
@@ -15,6 +17,12 @@ if (!empty($memberSince)) {
 <main class="tt-account">
     <div class="tt-account-container">
         <h1 class="tt-account-title">Mon compte</h1>
+
+        <?php if (!empty($profileError)): ?>
+            <div class="tt-alert tt-alert--error"><?= htmlspecialchars($profileError) ?></div>
+        <?php elseif (!empty($profileSuccess)): ?>
+            <div class="tt-alert tt-alert--success">Profil mis à jour</div>
+        <?php endif; ?>
 
         <div class="tt-account-grid">
             <aside class="tt-account-card tt-account-profile">
@@ -38,20 +46,20 @@ if (!empty($memberSince)) {
 
             <section class="tt-account-card tt-account-form">
                 <h2>Vos informations personnelles</h2>
-                <form class="tt-account-form-grid">
+                <form class="tt-account-form-grid" method="POST">
                     <label class="tt-account-label">
                         <span>Adresse email</span>
-                        <input type="email" value="<?= htmlspecialchars($userEmail) ?>" readonly>
+                        <input type="email" name="email" value="<?= htmlspecialchars($userEmail) ?>" required>
                     </label>
                     <label class="tt-account-label">
                         <span>Mot de passe</span>
-                        <input type="password" value="password" readonly>
+                        <input type="password" name="password" placeholder="Laisser vide pour ne pas changer">
                     </label>
                     <label class="tt-account-label">
                         <span>Pseudo</span>
-                        <input type="text" value="<?= htmlspecialchars($username) ?>" readonly>
+                        <input type="text" name="username" value="<?= htmlspecialchars($username) ?>" required>
                     </label>
-                    <button type="button" class="tt-account-button">Enregistrer</button>
+                    <button type="submit" class="tt-account-button">Enregistrer</button>
                 </form>
             </section>
         </div>
@@ -94,7 +102,7 @@ if (!empty($memberSince)) {
                                     </td>
                                     <td>
                                         <div class="tt-account-actions">
-                                            <button type="button" class="tt-account-link">Éditer</button>
+                                            <a href="?page=bookEdit&id=<?= htmlspecialchars((string) $book->id) ?>" class="tt-account-link">Éditer</a>
                                             <button type="button" class="tt-account-link tt-account-link--danger">Supprimer</button>
                                         </div>
                                     </td>

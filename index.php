@@ -39,13 +39,18 @@ try {
     break;
 
     case 'booksList':
-    $bookController = new BookController();
-    $bookController->books();
+    $booksController = new BooksController();
+    $booksController->showList();
     break;
 
     case 'book':
     $bookController = new BookController();
     $bookController->book();
+    break;
+
+    case 'bookEdit':
+    $bookEditController = new BookEditController();
+    $bookEditController->edit();
     break;
 
     case 'logout':

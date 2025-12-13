@@ -8,7 +8,7 @@
 $cover = $book->coverUrl ?: 'images/kinfolk.png';
 $ownerName = $owner ? $owner->username : 'Membre TomTroc';
 $ownerPicture = ($owner && !empty($owner->picture)) ? $owner->picture : 'images/hamza.png';
-$description = $book->description ?: 'Description non disponible pour le moment.';
+$description = $book->description ?: 'Description non disponible pour le moment';
 ?>
 
 <main class="tt-book-detail">
@@ -32,7 +32,7 @@ $description = $book->description ?: 'Description non disponible pour le moment.
 
             <div class="tt-book-section">
                 <p class="tt-book-section-title">Description</p>
-                <p><?= nl2br(htmlspecialchars($description)) ?></p>
+                <p><?= (htmlspecialchars($description)) ?></p>
             </div>
 
             <div class="tt-book-owner">

@@ -80,4 +80,29 @@ class BookModel
 
         return $books;
     }
+
+    /**
+     * Met à jour un livre existant.
+     */
+    public static function updateBook(int $id, string $title, string $author, string $description, string $coverUrl, bool $availability): void
+    {
+        $stmt = self::db()->prepare(
+            'UPDATE book 
+             SET book_title = :title,
+                 author = :author,
+                 book_description = :description,
+                 cover_url = :cover_url,
+                 availability = :availability
+                 WHERE book_id = :id'
+        );
+
+        $stmt->execute([
+            'title' => $title,
+            'author' => $author,
+            'description' => $description,
+            'cover_url' => $coverUrl,
+            'availability' => $availability ? 1 : 0,
+            'id' => $id,
+        ]);
+    }
 }

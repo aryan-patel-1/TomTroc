@@ -85,6 +85,30 @@ class UserModel
     }
 
     /*
+     * Met à jour un utilisateur (username, email, picture et optionnellement password).
+     */
+    public static function updateUser(int $id, string $username, string $email, ?string $picture = null, ?string $newPassword = null): void
+    {
+        $fields = [
+            'username' => $username,
+            'email' => $email,
+            'user_picture' => $picture ?? '',
+        ];
+
+        $setSql = 'username = :username, email = :email, user_picture = :user_picture';
+
+        if ($newPassword !== null && $newPassword !== '') {
+            $fields['password_hash'] = password_hash($newPassword, PASSWORD_BCRYPT);
+            $setSql .= ', password_hash = :password_hash';
+        }
+
+        $fields['id'] = $id;
+
+        $stmt = self::db()->prepare("UPDATE user SET $setSql WHERE user_id = :id");
+        $stmt->execute($fields);
+    }
+
+    /*
      * Authentifie un utilisateur à partir de son email et de son mot de passe
      * - Cherche l'utilisateur par email
      * - Vérifie que le mot de passe fourni correspond au hash stocké

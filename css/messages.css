@@ -1,0 +1,191 @@
+.tt-messages {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: calc(100vh - 140px);
+    background: #F5F3EF;
+}
+
+.tt-messages-sidebar {
+    background: #F6F4EE;
+    border-right: 1px solid #E6E2D9;
+    padding: 28px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tt-messages-sidebar h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0 24px 12px;
+}
+
+.tt-messages-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.tt-conv {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 10px;
+    padding: 12px 24px;
+    align-items: center;
+    text-decoration: none;
+    color: #222;
+}
+
+.tt-conv:hover,
+.tt-conv.is-active {
+    background: #FFFFFF;
+}
+
+.tt-conv-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.tt-conv-title {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #222;
+}
+
+.tt-conv-preview {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    color: #7A7A7A;
+    margin: 0;
+}
+
+.tt-conv-time {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    color: #7A7A7A;
+}
+
+.tt-messages-main {
+    padding: 28px 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #F5F3EF;
+}
+
+.tt-messages-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tt-messages-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.tt-messages-header .tt-user-name {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.tt-thread {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 6px 4px;
+}
+
+.tt-bubble {
+    max-width: 60%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tt-bubble-meta {
+    font-size: 11px;
+    color: #9B9B9B;
+    align-self: flex-end;
+}
+
+.tt-bubble--me {
+    align-self: flex-end;
+    background: #E6EFF8;
+    color: #1F3A57;
+}
+
+.tt-bubble--other {
+    align-self: flex-start;
+    background: #FFFFFF;
+    border: 1px solid #E6E2D9;
+    color: #333;
+}
+
+.tt-message-form {
+    display: grid;
+    grid-template-columns: 1fr 160px;
+    gap: 14px;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.tt-message-input {
+    width: 100%;
+    height: 54px;
+    border-radius: 10px;
+    border: 1px solid #E0DBD0;
+    background: #FFFFFF;
+    padding: 0 16px;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    color: #2B2B2B;
+}
+
+.tt-message-input::placeholder {
+    color: #A3A3A3;
+}
+
+.tt-message-submit {
+    height: 54px;
+    border-radius: 10px;
+    border: 1px solid #0CA15B;
+    background: #0CA15B;
+    color: #FFFFFF;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.2s ease;
+}
+
+.tt-message-submit:hover {
+    background: #006D41;
+    border-color: #006D41;
+    transform: translateY(-1px);
+    box-shadow: 0px 10px 22px rgba(0, 109, 65, 0.18);
+}
+
+@media (max-width: 960px) {
+    .tt-messages {
+        grid-template-columns: 1fr;
+    }
+
+    .tt-messages-sidebar {
+        flex-direction: column;
+    }
+}
