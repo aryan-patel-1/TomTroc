@@ -16,8 +16,8 @@ class HomeController
 
         $view = new View('Accueil');
         $view->render('home', [
-            'books' => $latestBooks,
-            'owners' => $owners,
+            'latestBooks' => $latestBooks,
+            'ownersById' => $owners,
         ]);
     }
 }

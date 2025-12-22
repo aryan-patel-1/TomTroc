@@ -1,8 +1,3 @@
-<?php
-$bookList = $books ?? [];
-$ownersById = $owners ?? [];
-?>
-
 <main class="tt-books-page">
     <div class="books-container">
         <div class="tt-books-header">
@@ -19,7 +14,7 @@ $ownersById = $owners ?? [];
             </form>
         </div>
 
-        <?php if (!empty($bookList)): ?>
+        <?php if (!empty($bookList ?? [])): ?>
             <!-- Grille de livres -->
             <section class="tt-books-grid" data-books-grid>
                 <?php foreach ($bookList as $book): ?>

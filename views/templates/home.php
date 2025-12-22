@@ -1,9 +1,3 @@
-<?php
-// Données injectées par le contrôleur : derniers livres et propriétaires
-$latestBooks = $books ?? [];
-$ownersById = $owners ?? [];
-?>
-
 <main class="tt-home">
 
 <!-- HERO -->
@@ -32,7 +26,7 @@ $ownersById = $owners ?? [];
 
     <h2>Les derniers livres ajoutés</h2>
 
-    <?php if (!empty($latestBooks)): ?>
+    <?php if (!empty($latestBooks ?? [])): ?>
     <div class="tt-books-grid">
         <?php foreach ($latestBooks as $book): ?>
             <?php

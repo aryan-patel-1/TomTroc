@@ -38,9 +38,7 @@ class BookModel
         return $books;
     }
 
-    /**
-     * Retourne les derniers livres ajoutés, limités au nombre demandé.
-     */
+     // Retourne les derniers livres ajoutés, limités au nombre demandé
     public static function findLatest(int $limit = 4): array
     {
         $stmt = self::db()->prepare('SELECT * FROM book ORDER BY book_id DESC LIMIT :limit');
@@ -65,9 +63,7 @@ class BookModel
         return $row ? new self($row) : null;
     }
 
-    /**
-     * Retourne tous les livres d'un propriétaire donné.
-     */
+     //Retourne tous les livres d'un propriétaire donné
     public static function findByOwnerId(int $ownerId): array
     {
         $stmt = self::db()->prepare('SELECT * FROM book WHERE owner_id = :owner ORDER BY book_id DESC');
@@ -81,9 +77,7 @@ class BookModel
         return $books;
     }
 
-    /**
-     * Met à jour un livre existant.
-     */
+     // Met à jour un livre existant
     public static function updateBook(int $id, string $title, string $author, string $description, string $coverUrl, bool $availability): void
     {
         $stmt = self::db()->prepare(

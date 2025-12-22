@@ -1,23 +1,3 @@
-<?php
-if (!isset($owner)) {
-    echo '<main class="tt-owner"><p>Propriétaire introuvable.</p></main>';
-    return;
-}
-
-$booksList = $books ?? [];
-$booksCount = count($booksList);
-$ownerName = $owner->username ?? 'Membre TomTroc';
-$ownerPicture = !empty($owner->picture) ? $owner->picture : 'images/hamza.png';
-$memberSince = $owner->createdAt ?? '';
-$memberSinceText = 'Membre TomTroc';
-if (!empty($memberSince)) {
-    $timestamp = strtotime($memberSince);
-    if ($timestamp) {
-        $memberSinceText = date('d/m/Y', $timestamp);
-    }
-}
-?>
-
 <main class="tt-owner">
     <div class="tt-owner-container">
 
@@ -36,11 +16,11 @@ if (!empty($memberSince)) {
                 <span class="tt-owner-library-count"><?= $booksCount ?> livre<?= $booksCount > 1 ? 's' : '' ?></span>
             </div>
 
-            <a href="?page=messages&to=<?= htmlspecialchars((string) $owner->id) ?>" class="tt-owner-message">Écrire un message</a>
+            <a href="?page=messages&with=<?= htmlspecialchars((string) ($owner->id ?? '')) ?>" class="tt-owner-message">Écrire un message</a>
         </aside>
 
         <section class="tt-owner-library">
-            <?php if (!empty($booksList)): ?>
+            <?php if (!empty($books ?? [])): ?>
             <div class="tt-owner-table-wrapper">
                 <table class="tt-owner-table">
                     <thead>
@@ -52,7 +32,7 @@ if (!empty($memberSince)) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($booksList as $book): ?>
+                        <?php foreach ($books as $book): ?>
                         <?php
                             $cover = $book->coverUrl ?: 'images/kinfolk.png';
                             $description = $book->description ?: 'Description non disponible';

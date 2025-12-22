@@ -1,16 +1,3 @@
-<?php if (!isset($book)) : ?>
-<main class="tt-book-detail">
-    <p>Livre introuvable.</p>
-</main>
-<?php return; endif; ?>
-
-<?php
-$cover = $book->coverUrl ?: 'images/kinfolk.png';
-$ownerName = $owner ? $owner->username : 'Membre TomTroc';
-$ownerPicture = ($owner && !empty($owner->picture)) ? $owner->picture : 'images/hamza.png';
-$description = $book->description ?: 'Description non disponible pour le moment';
-?>
-
 <main class="tt-book-detail">
 
     <div class="tt-book-breadcrumb">
@@ -43,7 +30,9 @@ $description = $book->description ?: 'Description non disponible pour le moment'
                 </a>
             </div>
 
-            <a href="?page=messages" class="tt-book-cta">Envoyer un message</a>
+            <?php if ($owner): ?>
+            <a href="?page=messages&with=<?= htmlspecialchars((string) $owner->id) ?>" class="tt-book-cta">Envoyer un message</a>
+            <?php endif; ?>
         </div>
 
     </div>

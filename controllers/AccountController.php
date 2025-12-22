@@ -39,12 +39,27 @@ class AccountController
         // recupere les livres appartenant a l'utilisateur
         $books = BookModel::findByOwnerId((int) $user->id);
 
+        // données pour la vue
+        $username = $user->username ?? 'Utilisateur';
+        $userEmail = $user->email ?? 'email@example.com';
+        $userPicture = !empty($user->picture) ? $user->picture : 'images/logo-footer.svg';
+        $memberSinceText = 'Membre TomTroc';
+        if (!empty($user->createdAt)) {
+            $timestamp = strtotime($user->createdAt);
+            if ($timestamp) {
+                $memberSinceText = date('d/m/Y', $timestamp);
+            }
+        }
+
         $view = new View('Mon compte');
         $view->render('account', [
-            'user' => $user,
             'books' => $books,
-            'error' => $error,
-            'success' => $success,
+            'profileError' => $error,
+            'profileSuccess' => $success,
+            'username' => $username,
+            'userEmail' => $userEmail,
+            'userPicture' => $userPicture,
+            'memberSinceText' => $memberSinceText,
         ]);
     }
 }

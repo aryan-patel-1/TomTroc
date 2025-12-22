@@ -17,8 +17,8 @@ class BooksController
 
         $view = new View('Nos livres à l\'échange');
         $view->render('booksList', [
-            'books' => $books,
-            'owners' => $owners,
+            'bookList' => $books,
+            'ownersById' => $owners,
         ]);
     }
 }

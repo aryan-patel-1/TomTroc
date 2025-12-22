@@ -39,27 +39,8 @@ class BookEditController
             $formTitle = trim($_POST['title'] ?? '');
             $formAuthor = trim($_POST['author'] ?? '');
             $formDescription = trim($_POST['description'] ?? '');
-            $formCover = trim($_POST['cover_url'] ?? $book->coverUrl ?? '');
+            $formCover = $book->coverUrl;
             $formAvailability = (isset($_POST['availability']) && $_POST['availability'] === '1') ? '1' : '0';
-
-            // gere le fichier envoye
-            $uploadedCover = $_FILES['cover_file'] ?? null;
-            if ($uploadedCover && !empty($uploadedCover['tmp_name'])) {
-                $publicDir = 'images/uploads/';
-                $diskDir = __DIR__ . '/../' . $publicDir;
-                $ext = pathinfo($uploadedCover['name'], PATHINFO_EXTENSION);
-                if ($ext === '') {
-                    $ext = 'jpg';
-                }
-                $filename = 'cover_' . time() . '.' . $ext;
-                $target = $diskDir . $filename;
-                if (move_uploaded_file($uploadedCover['tmp_name'], $target)) {
-                    // enregistre le chemin public
-                    $formCover = $publicDir . $filename;
-                } else {
-                    $error = 'Échec du téléversement de la photo';
-                }
-            }
 
             if ($formTitle === '' || $formAuthor === '') {
                 $error = 'Titre et auteur sont obligatoires';
@@ -84,6 +65,7 @@ class BookEditController
         }
 
         $coverPreview = $formCover ?: 'images/kinfolk.png';
+        $availabilityValue = $formAvailability;
 
         $view = new View('Modifier le livre');
         $view->render('editBook', [
@@ -98,6 +80,7 @@ class BookEditController
                 'availability' => $formAvailability,
             ],
             'coverPreview' => $coverPreview,
+            'availabilityValue' => $availabilityValue,
         ]);
     }
 }

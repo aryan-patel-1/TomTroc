@@ -16,11 +16,19 @@ class BookController
         }
 
         $owner = $book->ownerId ? UserModel::findById($book->ownerId) : null;
+        $cover = $book->coverUrl ?: 'images/kinfolk.png';
+        $ownerName = $owner ? $owner->username : 'Membre TomTroc';
+        $ownerPicture = ($owner && !empty($owner->picture)) ? $owner->picture : 'images/hamza.png';
+        $description = $book->description ?: 'Description non disponible pour le moment';
 
         $view = new View($book->title);
         $view->render('book', [
             'book' => $book,
             'owner' => $owner,
+            'cover' => $cover,
+            'ownerName' => $ownerName,
+            'ownerPicture' => $ownerPicture,
+            'description' => $description,
         ]);
     }
 }

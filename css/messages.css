@@ -63,6 +63,10 @@
     margin: 0;
 }
 
+.tt-conv-preview--empty {
+    padding: 0 24px;
+}
+
 .tt-conv-time {
     font-family: "Inter", sans-serif;
     font-size: 12px;

@@ -16,10 +16,25 @@ class OwnerController
 
         $books = BookModel::findByOwnerId($ownerId);
 
+        $booksCount = count($books);
+        $ownerName = $owner->username ?? 'Membre TomTroc';
+        $ownerPicture = !empty($owner->picture) ? $owner->picture : 'images/hamza.png';
+        $memberSinceText = 'Membre TomTroc';
+        if (!empty($owner->createdAt)) {
+            $timestamp = strtotime($owner->createdAt);
+            if ($timestamp) {
+                $memberSinceText = date('d/m/Y', $timestamp);
+            }
+        }
+
         $view = new View('Profil propriétaire');
         $view->render('owner', [
             'owner' => $owner,
             'books' => $books,
+            'booksCount' => $booksCount,
+            'ownerName' => $ownerName,
+            'ownerPicture' => $ownerPicture,
+            'memberSinceText' => $memberSinceText,
         ]);
     }
 

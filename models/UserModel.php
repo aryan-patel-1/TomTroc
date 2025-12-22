@@ -84,9 +84,7 @@ class UserModel
         return self::findById($lastId);
     }
 
-    /*
-     * Met à jour un utilisateur (username, email, picture et optionnellement password).
-     */
+    // Met à jour un utilisateur
     public static function updateUser(int $id, string $username, string $email, ?string $picture = null, ?string $newPassword = null): void
     {
         $fields = [

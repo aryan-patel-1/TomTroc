@@ -1,26 +1,10 @@
-<?php
-$username = $user->username ?? 'Utilisateur';
-$userEmail = $user->email ?? 'email@example.com';
-$memberSince = $user->createdAt ?? '';
-$userPicture = !empty($user->picture) ? $user->picture : 'images/logo-footer.svg';
-$profileError = $error ?? null;
-$profileSuccess = $success ?? false;
-$memberSinceText = 'Membre TomTroc';
-if (!empty($memberSince)) {
-    $timestamp = strtotime($memberSince);
-    if ($timestamp) {
-        $memberSinceText = date('d/m/Y', $timestamp);
-    }
-}
-?>
-
 <main class="tt-account">
     <div class="tt-account-container">
         <h1 class="tt-account-title">Mon compte</h1>
 
-        <?php if (!empty($profileError)): ?>
+        <?php if (!empty($profileError ?? null)): ?>
             <div class="tt-alert tt-alert--error"><?= htmlspecialchars($profileError) ?></div>
-        <?php elseif (!empty($profileSuccess)): ?>
+        <?php elseif (!empty($profileSuccess ?? null)): ?>
             <div class="tt-alert tt-alert--success">Profil mis à jour</div>
         <?php endif; ?>
 
@@ -28,15 +12,16 @@ if (!empty($memberSince)) {
             <aside class="tt-account-card tt-account-profile">
                 <div class="tt-account-avatar-block">
                     <div class="tt-account-avatar">
-                        <img src="<?= htmlspecialchars($userPicture) ?>" alt="Avatar profil">
+                        <img src="<?= htmlspecialchars($userPicture ?? '') ?>" alt="Avatar profil">
                     </div>
-                    <button class="tt-account-edit" type="button">modifier</button>
+                    <label class="tt-account-edit" for="avatar_file">modifier</label>
+                    <input type="file" id="avatar_file" name="avatar_file" accept="image/*" style="display:none">
                 </div>
 
                 <div class="tt-account-divider"></div>
 
-                <h2 class="tt-account-name"><?= htmlspecialchars($username) ?></h2>
-                <p class="tt-account-meta">Membre depuis <?= htmlspecialchars($memberSinceText) ?></p>
+                <h2 class="tt-account-name"><?= htmlspecialchars($username ?? '') ?></h2>
+                <p class="tt-account-meta">Membre depuis <?= htmlspecialchars($memberSinceText ?? '') ?></p>
 
                 <div class="tt-account-library">
                     <span class="tt-account-library-label">Bibliothèque</span>
@@ -46,10 +31,10 @@ if (!empty($memberSince)) {
 
             <section class="tt-account-card tt-account-form">
                 <h2>Vos informations personnelles</h2>
-                <form class="tt-account-form-grid" method="POST">
+                <form class="tt-account-form-grid" method="POST" enctype="multipart/form-data">
                     <label class="tt-account-label">
                         <span>Adresse email</span>
-                        <input type="email" name="email" value="<?= htmlspecialchars($userEmail) ?>" required>
+                        <input type="email" name="email" value="<?= htmlspecialchars($userEmail ?? '') ?>" required>
                     </label>
                     <label class="tt-account-label">
                         <span>Mot de passe</span>
