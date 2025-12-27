@@ -1,3 +1,13 @@
+<?php
+// initialise les variables avec une valeur par defaut si elles n'existent pas
+$conversations = $conversations ?? [];
+$users = $users ?? [];
+$activeUser = $activeUser ?? null;
+$activeId = $activeId ?? 0;
+$thread = $thread ?? [];
+$currentUserId = $currentUserId ?? 0;
+?>
+
 <main class="tt-messages">
     <aside class="tt-messages-sidebar">
         <h1>Messagerie</h1>
@@ -12,6 +22,9 @@
 
                     // recupere le dernier message de la conversation
                     $lastMsg = $data['lastMessage'] ?? null;
+
+                    // prepare un texte court pour l'apercu du message
+                    $preview = $lastMsg ? mb_strimwidth($lastMsg->content, 0, 28, '…', 'UTF-8') : 'Pas encore de message';
 
                     // verifie si cette conversation est celle actuellement ouverte
                     $isActive = ($otherId === $activeId);
@@ -41,7 +54,7 @@
 
             <?php if (empty($conversations)): ?>
                 <!-- message si aucune conversation -->
-                <p class="tt-conv-preview tt-conv-preview--empty">Aucune conversation</p>
+                <p class="tt-conv-preview" style="padding: 0 24px;">Aucune conversation</p>
             <?php endif; ?>
         </div>
     </aside>
@@ -73,7 +86,7 @@
                 ?>
                 <div class="<?= $bubbleClass ?>">
                     <!-- contenu du message -->
-                    <span><?= htmlspecialchars($message->content) ?></span>
+                    <span><?= nl2br(htmlspecialchars($message->content)) ?></span>
 
                     <!-- affichage de la date -->
                     <span class="tt-bubble-meta"><?= htmlspecialchars($time) ?></span>

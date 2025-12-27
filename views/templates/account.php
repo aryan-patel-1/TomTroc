@@ -15,7 +15,7 @@
                         <img src="<?= htmlspecialchars($userPicture ?? '') ?>" alt="Avatar profil">
                     </div>
                     <label class="tt-account-edit" for="avatar_file">modifier</label>
-                    <input type="file" id="avatar_file" name="avatar_file" accept="image/*" style="display:none">
+                    <input type="file" id="avatar_file" name="avatar_file" accept="image/*" style="display:none" form="profile-form">
                 </div>
 
                 <div class="tt-account-divider"></div>
@@ -31,7 +31,16 @@
 
             <section class="tt-account-card tt-account-form">
                 <h2>Vos informations personnelles</h2>
-                <form class="tt-account-form-grid" method="POST" enctype="multipart/form-data">
+                <form id="profile-form" class="tt-account-form-grid" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="avatar_file">
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    require_once __DIR__ . '/../../services/EditPictures.php';
+                    $result = EditPictures::upload('avatar_file');
+                        die;
+                    }
+                    ?>
+
                     <label class="tt-account-label">
                         <span>Adresse email</span>
                         <input type="email" name="email" value="<?= htmlspecialchars($userEmail ?? '') ?>" required>

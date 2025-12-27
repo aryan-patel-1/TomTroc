@@ -115,6 +115,40 @@
     color: #000;
 }
 
+.tt-avatar-picker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+.tt-avatar-option {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.tt-avatar-option input {
+    display: none;
+}
+
+.tt-avatar-option img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.tt-avatar-option input:checked + img,
+.tt-avatar-option:hover img {
+    border-color: #0CA15B;
+    transform: translateY(-1px);
+}
+
 /* Formulaire */
 .tt-account-form {
     display: flex;
@@ -216,6 +250,7 @@
     border: 1px solid #E6E2D9;
     border-radius: 16px;
     overflow: hidden;
+    overflow-x: auto;
     box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.04);
 }
 
@@ -324,4 +359,33 @@
     text-align: center;
     font-family: "Inter", sans-serif;
     color: #6A6A6A;
+}
+
+@media (max-width: 960px) {
+    .tt-account {
+        padding: 60px 20px 90px;
+    }
+
+    .tt-account-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .tt-account-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .tt-account-table {
+        min-width: 640px;
+    }
+
+    .tt-account-table-wrapper {
+        border-radius: 12px;
+    }
+
+    .tt-account-card {
+        padding: 18px;
+    }
 }

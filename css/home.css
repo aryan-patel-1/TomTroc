@@ -436,3 +436,93 @@
     margin-top: 16px;
     margin-left: 950px;
 }
+
+@media (max-width: 960px) {
+    .home-hero {
+        padding: 60px 28px;
+        gap: 40px;
+    }
+
+    .hero-left {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-left h1 {
+        font-size: 30px;
+        line-height: 1.3;
+    }
+
+    .hero-left p {
+        font-size: 15px;
+    }
+
+    .hero-right {
+        text-align: center;
+        width: 100%;
+    }
+
+    .hero-img {
+        width: 320px;
+        height: auto;
+    }
+
+    .tt-how {
+        padding: 70px 30px;
+    }
+
+    .tt-how-steps {
+        flex-wrap: wrap;
+    }
+
+    .tt-heart {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .home-hero {
+        padding: 50px 18px;
+    }
+
+    .hero-left h1 {
+        font-size: 26px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .tt-last-books {
+        margin-top: 60px;
+    }
+
+    .tt-last-books h2 {
+        font-size: 26px;
+    }
+
+    .tt-how {
+        padding: 50px 18px;
+    }
+
+    .tt-step {
+        width: 100%;
+    }
+
+    .tt-values {
+        padding: 60px 18px 50px;
+    }
+
+    .tt-values h2 {
+        font-size: 24px;
+    }
+
+    .tt-banner img {
+        height: 180px;
+    }
+
+    .tt-book-detail {
+        padding: 0 14px;
+    }
+}

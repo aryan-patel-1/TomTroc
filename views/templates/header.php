@@ -11,6 +11,18 @@
 </head>
 <body>
 
+<?php
+$newMessageCount = 0;
+if (!empty($_SESSION['user_id'])) {
+    try {
+        $newMessageCount = MessageModel::countUnreadForUser((int) $_SESSION['user_id']);
+    } catch (Throwable $e) {
+        // on laisse 0 si une erreur survient pour ne pas casser l'affichage du header
+        $newMessageCount = 0;
+    }
+}
+?>
+
 <header class="tt-header">
 
     <div class="tt-left">
@@ -28,7 +40,7 @@
         <div class="tt-separator" aria-hidden="true"></div>
         <a href="?page=messages" class="tt-icon-link">
             <img src="images/message.svg" class="tt-icon">
-            Messagerie <span class="tt-badge">1</span>
+            Messagerie <span class="tt-badge"><?= htmlspecialchars((string) $newMessageCount) ?></span>
         </a>
 
         <a href="?page=account" class="tt-icon-link">

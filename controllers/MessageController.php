@@ -15,14 +15,14 @@ class MessageController
         $userId = (int) $_SESSION['user_id'];
 
         // recupere les conversations de l'utilisateur
-        $conversations = MessageModel::findConversations($userId);
+        $conversationsByUser = MessageModel::findGroupByConversation($userId);
 
         // stocke les informations des autres utilisateurs
         $users = [];
 
         // charge les utilisateurs lies aux conversations
-        foreach (array_keys($conversations) as $otherId) {
-            $users[$otherId] = UserModel::findById($otherId);
+        foreach (array_keys($conversationsByUser) as $conversationUserId) {
+            $users[$conversationUserId] = UserModel::findById($conversationUserId);
         }
 
         // determine la conversation active
@@ -38,8 +38,8 @@ class MessageController
         }
 
         // selectionne la premiere conversation par defaut
-        if ($activeId === 0 && !empty($conversations)) {
-            $activeId = (int) array_keys($conversations)[0];
+        if ($activeId === 0 && !empty($conversationsByUser)) {
+            $activeId = (int) array_keys($conversationsByUser)[0];
         }
 
         // initialise le thread de messages
@@ -55,7 +55,7 @@ class MessageController
             // ajoute l'utilisateur et la conversation si trouve
             if ($activeUser) {
                 $users[$activeId] = $activeUser;
-                $conversations[$activeId] = ['lastMessage' => null];
+                $conversationsByUser[$activeId] = ['lastMessage' => null];
             }
         }
 
@@ -83,7 +83,7 @@ class MessageController
         // rend la vue de la messagerie avec les donnees necessaires
         $view = new View('Messagerie');
         $view->render('messages', [
-            'conversations' => $conversations,
+            'conversations' => $conversationsByUser,
             'users' => $users,
             'activeUser' => $activeUser,
             'activeId' => $activeId,

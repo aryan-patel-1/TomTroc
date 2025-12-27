@@ -41,10 +41,14 @@ class BookEditController
             $formDescription = trim($_POST['description'] ?? '');
             $formCover = $book->coverUrl;
             $formAvailability = (isset($_POST['availability']) && $_POST['availability'] === '1') ? '1' : '0';
+            $upload = EditPictures::upload('cover_file');
 
             if ($formTitle === '' || $formAuthor === '') {
                 $error = 'Titre et auteur sont obligatoires';
+            } elseif (!empty($upload['error'])) {
+                $error = $upload['error'];
             } elseif (!$error) {
+                $formCover = $upload['path'] ?? $book->coverUrl;
                 BookModel::updateBook(
                     $book->id,
                     $formTitle,
