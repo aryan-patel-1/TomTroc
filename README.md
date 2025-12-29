@@ -30,7 +30,7 @@ Le projet met en avant la simplicité, la convivialité et le partage autour de 
 1. Cloner le dépôt :
 
 ```bash
-git clone https://github.com/ton-utilisateur/tomtroc.git
+git clone https://github.com/aryan-patel-1/tomtroc.git
 ```
 
 2. Configurer la base de données :
