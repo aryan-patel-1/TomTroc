@@ -6,7 +6,7 @@
     gap: clamp(16px, 2vw, 32px);
     padding: 18px clamp(20px, 5vw, 60px);
     background-color: #F6F4EE;
-    flex-wrap: wrap;
+    position: relative;
 }
 
 .tt-logo {
@@ -25,10 +25,78 @@
 .tt-left {
     display: flex;
     align-items: center;
-    gap: clamp(16px, 4vw, 48px);
-    flex: 1 1 320px;
-    min-width: 280px;
-    flex-wrap: wrap;
+    gap: clamp(16px, 3vw, 32px);
+    flex: 0 0 auto;
+}
+
+.tt-burger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid #DED7C6;
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    position: relative;
+}
+
+.tt-burger-icon {
+    width: 22px;
+    height: 15px;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
+}
+
+.tt-burger span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 22px;
+    height: 2px;
+    background: #2E2E2E;
+    border-radius: 999px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.tt-burger span + span {
+    margin-top: 0;
+}
+
+.tt-burger:focus-visible {
+    outline: 2px solid #0CA15B;
+    outline-offset: 2px;
+}
+
+.tt-header.is-open .tt-burger-icon {
+    opacity: 0;
+}
+
+.tt-header.is-open .tt-burger span {
+    opacity: 1;
+}
+
+.tt-header.is-open .tt-burger span:nth-of-type(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.tt-header.is-open .tt-burger span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.tt-header.is-open .tt-burger span:nth-of-type(3) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.tt-nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 4vw, 48px);
 }
 
 .tt-nav-left {
@@ -56,9 +124,8 @@
 .tt-nav-right {
     display: flex;
     align-items: center;
-    gap: clamp(14px, 3vw, 32px);
-    flex: 1 1 320px;
-    min-width: 280px;
+    gap: clamp(14px, 3vw, 28px);
+    flex: 1 1 280px;
     justify-content: flex-end;
     flex-wrap: wrap;
 }
@@ -175,24 +242,64 @@
         align-items: flex-start;
     }
 
-    .tt-left,
-    .tt-nav-right {
-        flex: 1 1 100%;
-        min-width: 0;
+    .tt-left {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 900px) {
+    .tt-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
     }
 
     .tt-left {
-        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
     }
 
-    .tt-nav-left {
+    .tt-burger {
+        display: inline-flex;
+    }
+
+    .tt-nav-wrapper {
+        display: none;
         width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        background: #FFFFFF;
+        border: 1px solid #E6E2D9;
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.07);
+    }
+
+    .tt-header.is-open .tt-nav-wrapper {
+        display: flex;
+    }
+
+    .tt-nav-left,
+    .tt-nav-right {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        flex: 0 0 auto;
         justify-content: flex-start;
-        row-gap: 10px;
     }
 
     .tt-nav-right {
-        justify-content: flex-start;
+        border-top: 1px solid #E9E4DA;
+        padding-top: 12px;
+        margin-top: 2px;
+    }
+
+    .tt-nav-left a,
+    .tt-nav-right a {
+        font-size: 16px;
     }
 
     .tt-separator {
@@ -205,33 +312,32 @@
         padding: 14px 20px;
     }
 
-    .tt-nav-left,
-    .tt-nav-right {
-        gap: 12px;
-    }
-
-    .tt-nav-right {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .tt-icon-link,
-    .tt-login {
-        font-size: 16px;
-    }
-
     .tt-footer {
-        padding: 16px 20px;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin-left: 0;
-        margin-right: 0;
+        margin: 0;
         width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 16px 42px;
+        gap: 18px;
     }
 
     .tt-footer-right {
-        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
         gap: 12px;
+    }
+
+    .tt-footer-right a,
+    .tt-footer-right span {
+        font-size: 14px;
+        line-height: 1.6;
+        font-weight: 400;
+        color: #2E2E2E;
+    }
+
+    .tt-footer-logo {
+        width: 32px;
+        height: auto;
     }
 }

@@ -32,15 +32,6 @@
             <section class="tt-account-card tt-account-form">
                 <h2>Vos informations personnelles</h2>
                 <form id="profile-form" class="tt-account-form-grid" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="avatar_file">
-                    <?php
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    require_once __DIR__ . '/../../services/EditPictures.php';
-                    $result = EditPictures::upload('avatar_file');
-                        die;
-                    }
-                    ?>
-
                     <label class="tt-account-label">
                         <span>Adresse email</span>
                         <input type="email" name="email" value="<?= htmlspecialchars($userEmail ?? '') ?>" required>
