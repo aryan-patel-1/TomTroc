@@ -4,12 +4,7 @@ class MessageController
 {
     public function showMessages(): void
     {
-        // verifie si l'utilisateur est connecte
-        if (empty($_SESSION['user_id'])) {
-            // redirige vers la page de connexion si non connecte
-            header('Location: ?page=login');
-            exit;
-        }
+        AuthService::ensureAuthenticated();
 
         // recupere l'id de l'utilisateur connecte
         $userId = (int) $_SESSION['user_id'];
@@ -27,6 +22,7 @@ class MessageController
 
         // determine la conversation active
         $activeId = 0;
+        $viewMode = $_GET['view'] ?? '';
 
         // recupere l'id depuis le parametre with
         if (isset($_GET['with'])) {
@@ -38,7 +34,7 @@ class MessageController
         }
 
         // selectionne la premiere conversation par defaut
-        if ($activeId === 0 && !empty($conversationsByUser)) {
+        if ($activeId === 0 && $viewMode !== 'list' && !empty($conversationsByUser)) {
             $activeId = (int) array_keys($conversationsByUser)[0];
         }
 

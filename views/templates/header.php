@@ -46,7 +46,7 @@ if (!empty($_SESSION['user_id'])) {
 
         <nav class="tt-nav-right">
             <div class="tt-separator" aria-hidden="true"></div>
-            <a href="?page=messages" class="tt-icon-link">
+            <a href="?page=messages&view=list" class="tt-icon-link">
                 <img src="images/message.svg" class="tt-icon">
                 Messagerie <span class="tt-badge"><?= htmlspecialchars((string) $newMessageCount) ?></span>
             </a>

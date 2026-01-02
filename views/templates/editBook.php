@@ -50,3 +50,4 @@
         </div>
     </form>
 </main>
+<script src="js/image-preview.js" defer></script>

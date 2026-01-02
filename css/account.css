@@ -113,6 +113,15 @@
     font-size: 14px;
     font-family: "Inter", sans-serif;
     color: #000;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tt-account-library-count img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
 
 .tt-avatar-picker {
@@ -242,6 +251,9 @@
 /* Tableau des livres */
 .tt-account-books {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .tt-account-table-wrapper {
@@ -311,6 +323,47 @@
     overflow: hidden;
 }
 
+.tt-account-cards {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.tt-account-book-card {
+    padding: 18px;
+    border-radius: 16px;
+}
+
+.tt-account-book-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.tt-account-thumb--large {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+}
+
+.tt-account-book-meta h3 {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+}
+
+.tt-account-book-meta .author {
+    margin: 0 0 6px 0;
+    font-size: 13px;
+    color: #6A6A6A;
+}
+
+.tt-account-book-card .tt-account-description {
+    margin-bottom: 12px;
+    -webkit-line-clamp: 3;
+}
+
 .tt-pill {
     display: inline-flex;
     align-items: center;
@@ -377,15 +430,47 @@
 }
 
 @media (max-width: 720px) {
-    .tt-account-table {
-        min-width: 640px;
+    .tt-account {
+        padding: 50px 16px 80px;
     }
 
-    .tt-account-table-wrapper {
-        border-radius: 12px;
+    .tt-account-title {
+        margin-bottom: 18px;
+        font-size: 26px;
     }
 
     .tt-account-card {
-        padding: 18px;
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .tt-account-avatar {
+        width: 140px;
+        height: 140px;
+    }
+
+    .tt-account-form h2 {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .tt-account-label input {
+        height: 46px;
+        background: #EEF2F3;
+    }
+
+    .tt-account-button {
+        width: 100%;
+        background: #F7FFF9;
+        color: #0CA15B;
+        border: 1px solid #0CA15B;
+    }
+
+    .tt-account-table-wrapper {
+        display: none;
+    }
+
+    .tt-account-cards {
+        display: flex;
     }
 }

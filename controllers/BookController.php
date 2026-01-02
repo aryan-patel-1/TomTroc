@@ -5,17 +5,10 @@ class BookController
     // affiche le detail d'un livre
     public function book()
     {
-        $bookId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-        if ($bookId <= 0) {
-            throw new Exception('Livre introuvable');
-        }
-
-        $book = BookModel::findById($bookId);
-        if (!$book) {
-            throw new Exception('Livre introuvable');
-        }
-
+        $book = $this->loadBookOrFail((int) ($_GET['id'] ?? 0));
         $owner = $book->ownerId ? UserModel::findById($book->ownerId) : null;
+
+        // prépare les valeurs d'affichage avec des valeurs de repli
         $cover = $book->coverUrl ?: 'images/kinfolk.png';
         $ownerName = $owner ? $owner->username : 'Membre TomTroc';
         $ownerPicture = ($owner && !empty($owner->picture)) ? $owner->picture : 'images/hamza.png';
@@ -30,5 +23,20 @@ class BookController
             'ownerPicture' => $ownerPicture,
             'description' => $description,
         ]);
+    }
+
+    // charge un livre ou lève une exception si l'id est invalide
+    private function loadBookOrFail(int $bookId)
+    {
+        if ($bookId <= 0) {
+            throw new Exception('Livre introuvable');
+        }
+
+        $book = BookModel::findById($bookId);
+        if (!$book) {
+            throw new Exception('Livre introuvable');
+        }
+
+        return $book;
     }
 }

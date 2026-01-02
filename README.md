@@ -7,12 +7,12 @@ Le projet met en avant la simplicité, la convivialité et le partage autour de 
 
 ## Fonctionnalités principales
 
-* 🔐 Authentification des utilisateurs (inscription / connexion)
-* 👤 Gestion du profil utilisateur (avatar, informations personnelles)
-* 📖 Ajout, modification et suppression de livres
-* 💬 Système de messagerie entre utilisateurs
-* 🔍 Consultation et recherche de livres disponibles
-* 📸 Upload d’images (avatars, livres)
+* Authentification des utilisateurs (inscription / connexion)
+* Gestion du profil utilisateur (avatar, informations personnelles)
+* Ajout, modification et suppression de livres
+* Système de messagerie entre utilisateurs
+* Consultation et recherche de livres disponibles
+* Upload d’images (avatars, livres)
 
 ---
 

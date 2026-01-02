@@ -10,35 +10,15 @@ class AuthController
         // Quand le formulaire est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // Récupération des données envoyées
-            $username = trim($_POST['username'] ?? '');
-            $email = trim($_POST['email'] ?? '');
-            $password = $_POST['password'] ?? '';
+            // récupère et nettoie les saisies
+            [$username, $email, $password] = AuthService::prepareRegisterData($_POST);
 
-            // Vérification des champs obligatoires
-            if ($username === '' || $email === '' || $password === '') {
-                $error = 'Merci de remplir tous les champs';
+            // valide les données et vérifie l'unicité de l'email
+            $error = AuthService::validateRegister($username, $email, $password);
 
-            // Vérification de la validité de l'adresse email
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $error = 'Adresse email invalide';
-
-            // Vérifie si un compte existe déjà avec cet email
-            } elseif (UserModel::findByEmail($email)) {
-                $error = 'Cet email est déjà utilisé';
-
-            } else {
-                // Création d'un nouveau compte utilisateur (photo non fournie à l'inscription)
+            if (!$error) {
                 $user = UserModel::createUser($username, $email, $password, null);
-
-                // Sécurisation de la session
-                session_regenerate_id(true);
-
-                // On stocke les infos utilisateur dans la session
-                $_SESSION['user_id'] = $user->id;
-                $_SESSION['username'] = $user->username;
-
-                // Redirection vers l'accueil après succès
+                AuthService::startUserSession($user);
                 header('Location: ?page=home');
                 exit;
             }
@@ -55,36 +35,19 @@ class AuthController
         // Si le formulaire est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // On récupère l'email et le password
-            $email = trim($_POST['email'] ?? '');
-            $password = $_POST['password'] ?? '';
+            // récupère et nettoie l'email/mot de passe
+            [$email, $password] = AuthService::prepareLoginData($_POST);
 
-            // Vérification des champs vides
-            if ($email === '' || $password === '') {
-                $error = 'Merci de remplir tous les champs';
+            $error = AuthService::validateLogin($email, $password);
 
-            // Vérification du format de l'adresse email
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $error = 'Adresse email invalide';
-
-            } else {
-                // Tentative d’authentification via UserModel
+            if (!$error) {
                 $user = UserModel::authenticate($email, $password);
 
-                // Si l'utilisateur existe et le mot de passe est correct
                 if ($user) {
-                    // Sécurise la session — empêche le vol de session
-                    session_regenerate_id(true);
-
-                    // On stocke les infos de l'utilisateur
-                    $_SESSION['user_id'] = $user->id;
-                    $_SESSION['username'] = $user->username;
-
-                    // Redirection vers la page d'accueil après connexion réussie
+                    AuthService::startUserSession($user);
                     header('Location: ?page=home');
                     exit;
                 }
-                // En cas d'échec de l'authentification
                 $error = 'Email ou mot de passe incorrect';
             }
         }
