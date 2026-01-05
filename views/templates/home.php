@@ -40,6 +40,7 @@
                 }
                 // Image de couverture
                 $cover = $book->coverUrl ?: 'images/kinfolk.png';
+                $isAvailable = !empty($book->availability);
             ?>
             <a
                 class="tt-book-link"
@@ -47,6 +48,9 @@
                 data-title="<?= htmlspecialchars($book->title) ?>"
             >
                 <article class="tt-book-card">
+                    <?php if (!$isAvailable): ?>
+                        <span class="tt-book-badge" aria-label="Livre non disponible">non dispo.</span>
+                    <?php endif; ?>
                     <img src="<?= htmlspecialchars($cover) ?>" alt="<?= htmlspecialchars($book->title) ?>">
                     <h3><?= htmlspecialchars($book->title) ?></h3>
                     <p class="author"><?= htmlspecialchars($book->author) ?></p>
