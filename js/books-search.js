@@ -1,97 +1,57 @@
-// Recherche côté client sur les titres des livres
-// Tout le script est exécuté une fois que le DOM est entièrement chargé
+// recherche côté client sur les titres des livres
 document.addEventListener('DOMContentLoaded', () => {
+  // 1 charger les éléments utiles
+  const searchInput = document.querySelector('[data-search-books]');
+  const bookLinks = Array.from(document.querySelectorAll('[data-books-grid] .tt-book-link'));
+  const emptyMessage = document.querySelector('.tt-search-empty');
 
-    // Champ input utilisé pour la recherche (via attribut data-search-books)
-    const searchInput = document.querySelector('[data-search-books]');
+  // sécurité si rien à filtrer on stop
+  if (!searchInput || bookLinks.length === 0) return;
 
-    // Liste de tous les liens de livres présents dans la grille
-    // Array.from permet d'obtenir un vrai tableau pour utiliser map / forEach
-    const bookLinks = Array.from(
-        document.querySelectorAll('[data-books-grid] .tt-book-link')
-    );
+  // 2 normaliser les textes pour comparer proprement
+  // minuscule + suppression des accents + trim
+  const normalize = (value = '') =>
+    value
+      .toLocaleLowerCase('fr')
+      .normalize('NFD')
+      .trim();
 
-    // Message affiché lorsque aucun résultat n’est trouvé
-    const emptyMessage = document.querySelector('.tt-search-empty');
+  // 3 créer un cache des titres normalisés
+  // évite de refaire normalize sur chaque carte à chaque frappe
+  const booksCache = bookLinks.map((link) => {
+    const rawTitle =
+      link.dataset.title ||
+      link.querySelector('.tt-book-card h3')?.textContent ||
+      '';
 
-    // Sécurité : si le champ de recherche n’existe pas
-    // ou s’il n’y a aucun livre à filtrer, on arrête le script
-    if (!searchInput || bookLinks.length === 0) return;
+    return {
+      link,
+      normalizedTitle: normalize(rawTitle),
+    };
+  });
 
-    // Récupération du formulaire de l’input 
-    const form = searchInput.closest('form');
+  // 4 empêcher l'envoi du formulaire avec entrée
+  const form = searchInput.closest('form');
+  if (form) form.addEventListener('submit', (e) => e.preventDefault());
 
-    // Fonction de normalisation d’une chaîne de caractères
-    //Permet de comparer les titres et la recherche utilisateur
-    const normalize = (value = '') => value
-        // Passage en minuscule
-        .toLocaleLowerCase('fr')
-        // Décomposition (é → e)
-        .normalize('NFD')
-        // Suppression des espaces inutiles en début et fin
-        .trim();
+  // 5 filtrer et afficher les résultats
+  const updateBooks = () => {
+    const query = normalize(searchInput.value);
+    let visibleCount = 0;
 
-    // Création d’un cache des livres
-    // pour éviter de recalculer la normalisation à chaque frappe clavier
-    const booksCache = bookLinks.map((link) => {
-
-        // Récupération du titre brut du livre :
-        // depuis un data-attribute si présent
-        // sinon depuis le h3 de la carte
-        // sinon chaîne vide par sécurité
-        const rawTitle =
-            link.dataset.title ||
-            link.querySelector('.tt-book-card h3')?.textContent ||
-            '';
-
-        // On retourne un objet contenant :
-        // - le lien du livre
-        // - le titre déjà normalisé
-        return {
-            link,
-            normalizedTitle: normalize(rawTitle),
-        };
+    booksCache.forEach(({ link, normalizedTitle }) => {
+      const matches = !query || normalizedTitle.includes(query);
+      link.style.display = matches ? '' : 'none';
+      if (matches) visibleCount += 1;
     });
 
-    // Empêche l’envoi du formulaire lorsqu’on appuie sur Entrée
-    if (form) {
-        form.addEventListener('submit', (event) => event.preventDefault());
-    }
+    // 6 gérer le message aucun résultat
+    if (emptyMessage) emptyMessage.hidden = visibleCount !== 0;
+  };
 
-    // Fonction de filtrage des livres
-    const updateBooks = () => {
+  // 7 mise à jour en temps réel
+  searchInput.addEventListener('input', updateBooks);
 
-        // Normalisation de la valeur saisie par l’utilisateur
-        const query = normalize(searchInput.value);
-
-        // Compteur de livres visibles ( si aucun résultat )
-        let visibleCount = 0;
-
-        // Parcours de tous les livres en cache
-        booksCache.forEach(({ link, normalizedTitle }) => {
-
-            // Un livre est affiché si :
-            // - la recherche est vide
-            // - ou si le titre contient la recherche
-            const matches = !query || normalizedTitle.includes(query);
-
-            // Affichage ou masquage du livre
-            link.style.display = matches ? '' : 'none';
-
-            // Incrémentation du compteur si le livre est visible
-            if (matches) visibleCount += 1;
-        });
-
-        // Gestion de l’affichage du message aucun résultat
-        if (emptyMessage) {
-            // Le message est visible uniquement si aucun livre ne correspond
-            emptyMessage.hidden = visibleCount !== 0;
-        }
-    };
-
-    // Mise à jour de la liste à chaque frappe dans la barre de recherche
-    searchInput.addEventListener('input', updateBooks);
-
-    // Exécution au chargement de la page
-    updateBooks();
+  // 8 état initial
+  updateBooks();
 });

@@ -17,35 +17,9 @@
         <?php if (!empty($bookList ?? [])): ?>
             <!-- Grille de livres -->
             <section class="tt-books-grid" data-books-grid>
+                <?php $useInfoWrapper = true; ?>
                 <?php foreach ($bookList as $book): ?>
-                    <?php
-                        $owner = $ownersById[$book->ownerId] ?? null;
-                        $ownerName = 'Membre TomTroc';
-                        if ($owner) {
-                            $ownerName = $owner->username;
-                        } elseif ($book->ownerId) {
-                            $ownerName = 'Utilisateur #' . $book->ownerId;
-                        }
-                        $cover = $book->coverUrl ?: 'images/kinfolk.png';
-                        $isAvailable = !empty($book->availability);
-                    ?>
-                    <a
-                        class="tt-book-link"
-                        href="?page=book&id=<?= htmlspecialchars((string) $book->id) ?>"
-                        data-title="<?= htmlspecialchars($book->title) ?>"
-                    >
-                        <article class="tt-book-card">
-                            <?php if (!$isAvailable): ?>
-                                <span class="tt-book-badge" aria-label="Livre non disponible">non dispo.</span>
-                            <?php endif; ?>
-                            <img src="<?= htmlspecialchars($cover) ?>" alt="<?= htmlspecialchars($book->title) ?>">
-                            <div class="tt-book-info">
-                                <h3><?= htmlspecialchars($book->title) ?></h3>
-                                <p class="author"><?= htmlspecialchars($book->author) ?></p>
-                                <p class="seller">Vendu par : <span><?= htmlspecialchars($ownerName) ?></span></p>
-                            </div>
-                        </article>
-                    </a>
+                    <?php require __DIR__ . '/../../services/book-card.php'; ?>
                 <?php endforeach; ?>
             </section>
 

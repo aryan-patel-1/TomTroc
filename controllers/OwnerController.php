@@ -4,18 +4,22 @@ class OwnerController
 {
     public function showOwner()
     {
+        // recupere id proprietaire
         $ownerId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
         if ($ownerId <= 0) {
             throw new Exception('Propriétaire introuvable');
         }
 
+        // charge proprietaire
         $owner = UserModel::findById($ownerId);
         if (!$owner) {
             throw new Exception('Propriétaire introuvable');
         }
 
+        // charge livres proprietaire
         $books = BookModel::findByOwnerId($ownerId);
 
+        // prepare infos affichees
         $booksCount = count($books);
         $ownerName = $owner->username ?? 'Membre TomTroc';
         $ownerPicture = !empty($owner->picture) ? $owner->picture : 'images/hamza.png';
@@ -27,6 +31,7 @@ class OwnerController
             }
         }
 
+        // rendu de la page
         $view = new View('Profil propriétaire');
         $view->render('owner', [
             'owner' => $owner,

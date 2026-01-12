@@ -153,9 +153,10 @@
 
 /* PAGE DETAIL LIVRE */
 .tt-book-detail {
-    max-width: 1280px;
+    max-width: 1440px;
+    width: 100%;
     margin: 40px auto 60px;
-    padding: 0 40px;
+    padding: 0 40px 0 0;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -181,18 +182,19 @@
 
 .tt-book-layout {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 720px minmax(0, 1fr);
     gap: 36px;
     align-items: start;
+    height: 863px;
 }
 
 .tt-book-image img {
-    width: 100%;
-    min-height: 520px;
-    height: 100%;
+    width: 720px;
+    height: 863px;
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0px 8px 26px rgba(0, 0, 0, 0.12);
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
 }
 
 .tt-book-content h1 {
@@ -296,6 +298,7 @@
 @media (max-width: 960px) {
     .tt-book-layout {
         grid-template-columns: 1fr;
+        height: auto;
     }
 
     .tt-book-detail {
@@ -303,6 +306,8 @@
     }
 
     .tt-book-image img {
+        width: 100%;
+        height: auto;
         max-height: 520px;
     }
 }

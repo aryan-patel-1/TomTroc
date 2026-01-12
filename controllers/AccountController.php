@@ -4,7 +4,9 @@ class AccountController
 {
     public function showAccount()
     {
+        // verifie connexion
         AuthService::ensureAuthenticated();
+        // charge utilisateur courant
         $user = AccountService::loadCurrentUser();
         $error = null;
         $success = false;
@@ -14,11 +16,14 @@ class AccountController
             [$error, $success, $user] = AccountService::handleProfileUpdate($user);
         }
 
+        // formate la date d'inscription
         $memberSinceText = AccountService::formatMemberSince($user);
 
+        // rendu de la page
         $view = new View('Mon compte');
         $view->render('account', [
-            'books' => BookModel::findByOwnerId((int) $user->id), // recupere les livres appartenant a l'utilisateur
+            // recupere les livres appartenant a l'utilisateur
+            'books' => BookModel::findByOwnerId((int) $user->id),
             'profileError' => $error,
             'profileSuccess' => $success,
             'username' => $user->username ?? 'Utilisateur',

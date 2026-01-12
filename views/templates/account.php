@@ -1,3 +1,4 @@
+<!-- page compte -->
 <main class="tt-account">
     <div class="tt-account-container">
         <h1 class="tt-account-title">Mon compte</h1>
@@ -9,6 +10,7 @@
         <?php endif; ?>
 
         <div class="tt-account-grid">
+            <!-- colonne profil -->
             <aside class="tt-account-card tt-account-profile">
                 <div class="tt-account-avatar-block">
                     <div class="tt-account-avatar">
@@ -23,6 +25,7 @@
                 <h2 class="tt-account-name"><?= htmlspecialchars($username ?? '') ?></h2>
                 <p class="tt-account-meta">Membre depuis <?= htmlspecialchars($memberSinceText ?? '') ?></p>
 
+                <!-- infos bibliotheque -->
                 <div class="tt-account-library">
                     <span class="tt-account-library-label">Bibliothèque</span>
                     <span class="tt-account-library-count">
@@ -32,8 +35,10 @@
                 </div>
             </aside>
 
+            <!-- colonne formulaire -->
             <section class="tt-account-card tt-account-form">
                 <h2>Vos informations personnelles</h2>
+                <!-- formulaire profil -->
                 <form id="profile-form" class="tt-account-form-grid" method="POST" enctype="multipart/form-data">
                     <label class="tt-account-label">
                         <span>Adresse email</span>
@@ -52,9 +57,11 @@
             </section>
         </div>
 
+        <!-- section livres -->
         <section class="tt-account-books">
             <div class="tt-account-table-wrapper">
                 <?php if (!empty($books)): ?>
+                    <!-- tableau desktop -->
                     <table class="tt-account-table" aria-label="Liste de vos livres">
                         <thead>
                             <tr>
@@ -67,6 +74,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- boucle livres -->
                             <?php foreach ($books as $book): ?>
                                 <?php
                                     $cover = $book->coverUrl ?: 'images/kinfolk.png';
@@ -100,6 +108,7 @@
                         </tbody>
                     </table>
                 <?php else: ?>
+                    <!-- etat vide -->
                     <div class="tt-account-empty">
                         <p>Vous n'avez pas encore ajouté de livres.</p>
                         <p>Ajoutez vos livres pour les proposer à l'échange.</p>
@@ -108,7 +117,9 @@
             </div>
 
             <?php if (!empty($books)): ?>
+                <!-- cartes mobile -->
                 <div class="tt-account-cards" aria-label="Liste de vos livres">
+                    <!-- boucle livres -->
                     <?php foreach ($books as $book): ?>
                         <?php
                             $cover = $book->coverUrl ?: 'images/kinfolk.png';

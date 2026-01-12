@@ -28,35 +28,9 @@
 
     <?php if (!empty($latestBooks ?? [])): ?>
     <div class="tt-books-grid">
+        <?php $useInfoWrapper = false; ?>
         <?php foreach ($latestBooks as $book): ?>
-            <?php
-                // Détermine le nom du propriétaire affiché
-                $owner = $ownersById[$book->ownerId] ?? null;
-                $ownerName = 'Membre TomTroc';
-                if ($owner) {
-                    $ownerName = $owner->username;
-                } elseif ($book->ownerId) {
-                    $ownerName = 'Utilisateur #' . $book->ownerId;
-                }
-                // Image de couverture
-                $cover = $book->coverUrl ?: 'images/kinfolk.png';
-                $isAvailable = !empty($book->availability);
-            ?>
-            <a
-                class="tt-book-link"
-                href="?page=book&id=<?= htmlspecialchars((string) $book->id) ?>"
-                data-title="<?= htmlspecialchars($book->title) ?>"
-            >
-                <article class="tt-book-card">
-                    <?php if (!$isAvailable): ?>
-                        <span class="tt-book-badge" aria-label="Livre non disponible">non dispo.</span>
-                    <?php endif; ?>
-                    <img src="<?= htmlspecialchars($cover) ?>" alt="<?= htmlspecialchars($book->title) ?>">
-                    <h3><?= htmlspecialchars($book->title) ?></h3>
-                    <p class="author"><?= htmlspecialchars($book->author) ?></p>
-                    <p class="seller">Vendu par : <span><?= htmlspecialchars($ownerName) ?></span></p>
-                </article>
-            </a>
+            <?php require __DIR__ . '/../../services/book-card.php'; ?>
         <?php endforeach; ?>
     </div>
     <a href="?page=booksList" class="tt-see-all">Voir tous les livres</a>

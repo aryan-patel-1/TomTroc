@@ -1,6 +1,8 @@
+<!-- page proprietaire -->
 <main class="tt-owner">
     <div class="tt-owner-container">
 
+        <!-- colonne profil -->
         <aside class="tt-owner-profile">
             <div class="tt-owner-avatar-frame">
                 <img src="<?= htmlspecialchars($ownerPicture) ?>" alt="Photo du propriétaire" class="tt-owner-avatar">
@@ -11,6 +13,7 @@
             <h1 class="tt-owner-name"><?= htmlspecialchars($ownerName) ?></h1>
             <p class="tt-owner-meta">Membre depuis <?= htmlspecialchars($memberSinceText) ?></p>
 
+            <!--  bibliotheque -->
             <div class="tt-owner-library-meta">
                 <span class="tt-owner-library-label">Bibliothèque</span>
                 <span class="tt-owner-library-count">
@@ -19,11 +22,14 @@
                 </span>
             </div>
 
+            <!-- lien messagerie -->
             <a href="?page=messages&with=<?= htmlspecialchars((string) ($owner->id ?? '')) ?>" class="tt-owner-message">Écrire un message</a>
         </aside>
 
+        <!-- colonne livres -->
         <section class="tt-owner-library">
             <?php if (!empty($books ?? [])): ?>
+            <!-- tableau desktop -->
             <div class="tt-owner-table-wrapper">
                 <table class="tt-owner-table">
                     <thead>
@@ -35,6 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- boucle livres -->
                         <?php foreach ($books as $book): ?>
                         <?php
                             $cover = $book->coverUrl ?: 'images/kinfolk.png';
@@ -53,7 +60,9 @@
                 </table>
             </div>
 
+            <!-- cartes mobile -->
             <div class="tt-owner-cards">
+                <!-- boucle livres -->
                 <?php foreach ($books as $book): ?>
                     <?php
                         $cover = $book->coverUrl ?: 'images/kinfolk.png';
@@ -74,6 +83,7 @@
                 <?php endforeach; ?>
             </div>
             <?php else: ?>
+                <!-- etat vide -->
                 <p>Aucun livre pour le moment</p>
             <?php endif; ?>
         </section>

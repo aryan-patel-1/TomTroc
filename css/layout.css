@@ -7,9 +7,10 @@
     padding: 18px clamp(20px, 5vw, 60px);
     background-color: #F6F4EE;
     position: relative;
-    max-width: 1440px;
-    margin: 0 auto;
-    width: 100%;
+    width: 100vw; 
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    height: 80px;
 }
 
 .tt-logo {
@@ -187,6 +188,58 @@
     font-weight: 600;
 }
 
+@media (min-width: 1440px) {
+    .tt-header {
+        padding: 0;
+        width: 1440px;
+        height: 80px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .tt-logo {
+        position: absolute;
+        left: 150px;
+        top: 15px;
+        width: 155px;
+        height: 51px;
+    }
+
+    .tt-logo-img {
+        width: 155px;
+        height: 51px;
+    }
+
+    .tt-nav-left {
+        position: absolute;
+        left: 383px;
+        top: 31px;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    .tt-nav-left a:first-child {
+        width: 50px;
+        height: 17px;
+        line-height: 17px;
+        display: block;
+    }
+
+    .tt-nav-right {
+        position: absolute;
+        left: 891px;
+        top: 31px;
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    .tt-nav-right .tt-separator {
+        display: none;
+    }
+}
+
 
 /* FOOTER */
 .tt-footer {
@@ -201,6 +254,7 @@
     gap: 16px;
     border-top: 1px solid #E5E5E5;
     flex-wrap: wrap;
+    height: 61px;
 }
 
 .tt-footer-left {
@@ -256,6 +310,7 @@
         flex-direction: column;
         align-items: stretch;
         gap: 14px;
+        height: auto;
     }
 
     .tt-left {
@@ -320,11 +375,13 @@
     .tt-footer {
         margin: 0;
         width: 100%;
+        max-width: 100%;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 48px 16px 42px;
         gap: 18px;
+        height: auto;
     }
 
     .tt-footer-right {

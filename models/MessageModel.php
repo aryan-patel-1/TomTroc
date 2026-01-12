@@ -2,6 +2,7 @@
 
 class MessageModel
 {
+    // champs message
     public int $id;
     public int $senderId;
     public int $receiverId;
@@ -22,17 +23,20 @@ class MessageModel
 
     private static function db(): PDO
     {
+        // acces base
         return DBManager::getConnection();
     }
 
     // retourne les conversations d'un utilisateur avec le dernier message
     public static function findGroupByConversation(int $userId): array
     {
+        // charge messages tries par date
         $stmt = self::db()->prepare('SELECT * FROM message WHERE sender_id = :uid OR receiver_id = :uid ORDER BY date_time DESC');
         $stmt->execute(['uid' => $userId]);
 
         $groupedByConversation = [];
         foreach ($stmt->fetchAll() as $row) {
+            // garde le dernier message par user
             $message = new self($row);
             $conversationUserId = $message->senderId === $userId ? $message->receiverId : $message->senderId;
 
@@ -50,6 +54,7 @@ class MessageModel
     // retourne les messages entre deux utilisateurs
     public static function findThread(int $userId, int $conversationUserId): array
     {
+        // marque comme lu avant la lecture
         self::markThreadAsRead($userId, $conversationUserId);
 
         $stmt = self::db()->prepare(
@@ -65,6 +70,7 @@ class MessageModel
 
         $messages = [];
         foreach ($stmt->fetchAll() as $row) {
+            // transforme en objets
             $messages[] = new self($row);
         }
 
@@ -74,11 +80,13 @@ class MessageModel
     // marque une conversation comme lue pour l'utilisateur connecte
     public static function markThreadAsRead(int $userId, int $conversationUserId): void
     {
+        // ignore si id invalide
         if ($conversationUserId <= 0) {
             return;
         }
 
         try {
+            // met a jour les messages recus
             $stmt = self::db()->prepare(
                 'UPDATE message 
                  SET is_read = 1 
@@ -91,6 +99,7 @@ class MessageModel
                 'other' => $conversationUserId,
             ]);
         } catch (PDOException $e) {
+            // tente d ajouter la colonne si besoin
             // si la colonne is_read n'existe pas encore, on essaie de l'ajouter puis on relance
             if (str_contains($e->getMessage(), 'is_read')) {
                 if (self::ensureIsReadColumn()) {
@@ -106,6 +115,7 @@ class MessageModel
     public static function countUnreadForUser(int $userId): int
     {
         try {
+            // compte les messages non lus
             $stmt = self::db()->prepare(
                 'SELECT COUNT(*) 
                  FROM message 
@@ -115,6 +125,7 @@ class MessageModel
             $stmt->execute(['uid' => $userId]);
             return (int) $stmt->fetchColumn();
         } catch (PDOException $e) {
+            // ajoute la colonne si besoin
             // si la colonne is_read n'est pas presente, on l'ajoute puis on relance la requete
             if (str_contains($e->getMessage(), 'is_read')) {
                 if (self::ensureIsReadColumn()) {
@@ -130,6 +141,7 @@ class MessageModel
     public static function create(int $senderId, int $receiverId, string $content, ?int $bookId = null): void
     {
         try {
+            // enregistre le message
             $stmt = self::db()->prepare(
                 'INSERT INTO message (sender_id, receiver_id, message_content, is_read) 
                  VALUES (:sender, :receiver, :content, 0)'
@@ -140,6 +152,7 @@ class MessageModel
                 'content' => $content,
             ]);
         } catch (PDOException $e) {
+            // ajoute la colonne si besoin
             // si la colonne is_read n'existe pas encore, on l'ajoute puis on relance l'insert
             if (str_contains($e->getMessage(), 'is_read')) {
                 if (self::ensureIsReadColumn()) {
@@ -155,18 +168,21 @@ class MessageModel
     private static function ensureIsReadColumn(): bool
     {
         try {
+            // verifie existence
             $check = self::db()->query("SHOW COLUMNS FROM message LIKE 'is_read'");
             $exists = $check->fetch();
             if ($exists) {
                 return true;
             }
 
+            // ajoute colonne si absente
             self::db()->exec(
                 'ALTER TABLE message 
                  ADD COLUMN is_read TINYINT(1) NOT NULL DEFAULT 0'
             );
             return true;
         } catch (PDOException $e) {
+            // ne bloque pas si echec schema
             // on ne bloque pas l'application si on ne peut pas modifier le schéma
             return false;
         }

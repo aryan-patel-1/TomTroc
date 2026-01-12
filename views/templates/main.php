@@ -1,5 +1,5 @@
 <?php
-
+// layout principal
     $pageTitle = $title ?? 'Tom Troc';
         require_once './views/templates/header.php';
     echo $content;
