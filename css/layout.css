@@ -188,10 +188,10 @@
     font-weight: 600;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1700px) {
     .tt-header {
         padding: 0;
-        width: 1440px;
+        width: 1700px;
         height: 80px;
         margin-left: 0;
         margin-right: 0;
@@ -199,7 +199,7 @@
 
     .tt-logo {
         position: absolute;
-        left: 150px;
+        left: 177px;
         top: 15px;
         width: 155px;
         height: 51px;
@@ -212,7 +212,7 @@
 
     .tt-nav-left {
         position: absolute;
-        left: 383px;
+        left: 452px;
         top: 31px;
         align-items: flex-start;
         flex-wrap: nowrap;
@@ -227,7 +227,7 @@
 
     .tt-nav-right {
         position: absolute;
-        left: 891px;
+        left: 1052px;
         top: 31px;
         flex: 0 0 auto;
         justify-content: flex-start;

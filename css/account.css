@@ -74,6 +74,10 @@
     padding: 0;
 }
 
+.tt-account-file-input {
+    display: none;
+}
+
 .tt-account-divider {
     width: 100%;
     height: 1px;

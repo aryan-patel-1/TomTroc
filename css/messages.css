@@ -2,7 +2,7 @@
     background: #F5F3EF;
     min-height: calc(100vh - 141px);
     width: 100%;
-    max-width: 1440px;
+    max-width: 1700px;
     margin: 0 auto;
     padding: 0 18px 40px;
     box-sizing: border-box;
@@ -62,6 +62,10 @@
     font-size: 13px;
     color: #7A7A7A;
     margin: 0;
+}
+
+.tt-conv-preview--empty {
+    padding: 0 24px;
 }
 
 .tt-conv-time {

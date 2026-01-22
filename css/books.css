@@ -288,6 +288,10 @@
     text-decoration: underline;
 }
 
+.tt-book-edit-file-input {
+    display: none;
+}
+
 .tt-book-edit-form input,
 .tt-book-edit-form textarea,
 .tt-book-edit-form select {

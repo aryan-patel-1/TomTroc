@@ -19,7 +19,7 @@
                     <img src="<?= htmlspecialchars($coverPreview) ?>" alt="<?= htmlspecialchars($book->title) ?>">
                 </div>
                 <label class="tt-book-edit-photo-link" for="cover_file">Modifier la photo</label>
-                <input type="file" id="cover_file" name="cover_file" accept="image/*" style="display:none">
+                <input type="file" id="cover_file" name="cover_file" accept="image/*" class="tt-book-edit-file-input">
             </div>
 
             <div class="tt-book-edit-form">

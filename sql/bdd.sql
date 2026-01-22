@@ -110,10 +110,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `email`, `password_hash`, `date_time`, `user_picture`) VALUES
-(1, 'az', 'az@az.com', '$2y$10$VKFy5r3vrSidE2OXragODeExiC4qGzRg4xbPnK0LTO/V0.AFb2Z7S', '2025-12-04 15:10:37', ''),
-(2, 'ar', 'ar@ar.com', '$2y$10$kONL3i6itXcAEzRkOxmkledWKomtr23Z7.E6dgAyyMwbgE5lN5jIC', '2025-12-05 09:45:27', 'uploads/image exemple.jpeg'),
-(3, 'aq', 'aq@aq.com', '$2y$10$xpwwzR/HpJs5qxDxHjSq6uvlyZDsj2n4Z2gj3y99TsV2qFpSH1sRC', '2025-12-05 13:58:03', ''),
-(4, 'ae', 'ae@ae.com', '$2y$10$fYhwYIi7oYieMKGw6p00D.lLe7irAvpyr5d0loTekWEMzYKPe01jm', '2025-12-06 10:02:44', ''),
 (10, 'alice', 'alice@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2025-01-01 09:00:00', 'https://picsum.photos/id/200/400/400'),
 (11, 'bob', 'bob@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2025-01-01 09:05:00', 'https://picsum.photos/id/201/400/400'),
 (12, 'charlie', 'charlie@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2025-01-01 09:10:00', 'https://picsum.photos/id/202/400/400'),

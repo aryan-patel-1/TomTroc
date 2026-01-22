@@ -23,7 +23,7 @@
             <input type="password" id="password" name="password" required>
 
             <!-- bouton connexion -->
-            <button type="submit" class="btn-primary">S’identifier</button>
+            <button type="submit" class="tt-auth-btn">S’identifier</button>
         </form>
 
         <!-- lien inscription -->

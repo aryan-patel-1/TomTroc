@@ -36,8 +36,8 @@ git clone https://github.com/aryan-patel-1/tomtroc.git
 2. Configurer la base de données :
 
 * Créer une base MySQL
-* Importer le fichier `bdd.sql` fourni
-* Renseigner les identifiants dans le fichier de configuration
+* Importer le fichier `bdd.sql` fourni et `fixture.sql` pour intégrer le système de fixture
+* Renseigner les identifiants dans le fichier de configuration (`database.example.php`)
 
 3. Lancer le projet via un serveur local (MAMP, XAMPP, WAMP)
 

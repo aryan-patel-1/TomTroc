@@ -33,7 +33,7 @@
 
             <?php if (empty($conversations)): ?>
                 <!-- etat vide -->
-                <p class="tt-conv-preview" style="padding: 0 24px;">Aucune conversation</p>
+                <p class="tt-conv-preview tt-conv-preview--empty">Aucune conversation</p>
             <?php endif; ?>
         </div>
     </section>

@@ -17,7 +17,7 @@
                         <img src="<?= htmlspecialchars($userPicture ?? '') ?>" alt="Avatar profil">
                     </div>
                     <label class="tt-account-edit" for="avatar_file">modifier</label>
-                    <input type="file" id="avatar_file" name="avatar_file" accept="image/*" style="display:none" form="profile-form">
+                    <input type="file" id="avatar_file" name="avatar_file" accept="image/*" class="tt-account-file-input" form="profile-form">
                 </div>
 
                 <div class="tt-account-divider"></div>
