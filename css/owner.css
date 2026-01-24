@@ -10,6 +10,7 @@
     grid-template-columns: 320px 1fr;
     gap: 40px;
     align-items: flex-start;
+    width: 100%;
 }
 
 .tt-owner-profile {
@@ -22,6 +23,10 @@
     gap: 18px;
     border: 1px solid #E8E2D9;
     box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.tt-owner-container > * {
+    min-width: 0;
 }
 
 .tt-owner-avatar-frame {
@@ -119,6 +124,7 @@
 .tt-owner-library {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .tt-owner-cards {
@@ -130,7 +136,9 @@
     border-radius: 18px;
     border: 1px solid #E5E1D8;
     box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .tt-owner-table {
@@ -180,6 +188,7 @@
 .tt-owner-summary {
     line-height: 1.45;
     color: #4A4A4A;
+    overflow-wrap: anywhere;
 }
 
 .tt-owner-author {
@@ -226,8 +235,8 @@
     }
 
     .tt-owner-avatar-frame {
-        width: 180px;
-        height: 180px;
+        width: clamp(120px, 50vw, 180px);
+        height: clamp(120px, 50vw, 180px);
     }
 
     .tt-owner-divider {
@@ -243,8 +252,9 @@
     }
 
     .tt-owner-message {
-        width: 220px;
-        height: 52px;
+        width: 100%;
+        max-width: 320px;
+        min-height: 48px;
         font-size: 16px;
         border-radius: 10px;
     }
@@ -278,8 +288,8 @@
     }
 
     .tt-owner-card-cover {
-        width: 78px;
-        height: 78px;
+        width: clamp(64px, 22vw, 78px);
+        height: clamp(64px, 22vw, 78px);
         border-radius: 10px;
         overflow: hidden;
         flex-shrink: 0;
@@ -311,5 +321,6 @@
         line-height: 1.6;
         color: #4A4A4A;
         font-style: italic;
+        overflow-wrap: anywhere;
     }
 }

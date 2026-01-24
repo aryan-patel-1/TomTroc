@@ -103,6 +103,9 @@
 @media (max-width: 900px) {
     .tt-auth {
         flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .tt-auth-left {
