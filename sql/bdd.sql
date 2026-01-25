@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 29 déc. 2025 à 15:33
+-- Généré le : dim. 25 jan. 2026 à 10:42
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -43,10 +43,10 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`book_id`, `book_title`, `author`, `book_description`, `owner_id`, `date_time`, `availability`, `cover_url`) VALUES
-(5, 'Esther', 'Alabaster', 'Edition Alabaster avec photographies inspirantes.', 1, '2025-12-09 11:11:23', 1, 'images/esther.png'),
-(6, 'The Kinfolk Table', 'Nathan Williams', 'Recettes et histoires pour des tables conviviales', 2, '2025-12-09 11:11:23', 0, 'images/kinfolk.png'),
-(7, 'Wabi Sabi', 'Beth Kempton', 'Une exploration du concept japonais du wabi-sabi.', 3, '2025-12-09 11:11:23', 1, 'images/wabi.png'),
-(8, 'Milk & honey', 'Rupi Kaur', 'Recueil de poèmes illustrés.', 4, '2025-12-09 11:11:23', 1, 'images/milk.png'),
+(5, 'Esther', 'Alabaster', 'Edition Alabaster avec photographies inspirantes.', 10, '2025-12-09 11:11:23', 1, 'images/esther.png'),
+(6, 'Livre', 'Nathan Williams', 'Recettes et histoires pour des tables conviviales', 20, '2025-12-09 11:11:23', 0, 'uploads/hamza-nouasria-KXrvPthkmYQ-unsplash 1@2x.png'),
+(7, 'Wabi Sabi', 'Beth Kempton', 'Une exploration du concept japonais du wabi-sabi.', 18, '2025-12-09 11:11:23', 1, 'images/wabi.png'),
+(8, 'Milk & honey', 'Rupi Kaur', 'Recueil de poèmes illustrés.', 12, '2025-12-09 11:11:23', 1, 'images/milk.png'),
 (10, 'Livre 1', 'Auteur 1', 'Description simple du livre 1.', 10, '2025-01-02 09:00:00', 1, 'https://picsum.photos/id/1010/400/400'),
 (11, 'Livre 2', 'Auteur 2', 'Description simple du livre 2.', 11, '2025-01-02 09:05:00', 1, 'https://picsum.photos/id/1011/400/400'),
 (12, 'Livre 3', 'Auteur 3', 'Description simple du livre 3.', 12, '2025-01-02 09:10:00', 0, 'https://picsum.photos/id/1012/400/400'),
@@ -56,8 +56,8 @@ INSERT INTO `book` (`book_id`, `book_title`, `author`, `book_description`, `owne
 (16, 'Livre 7', 'Auteur 7', 'Description simple du livre 7.', 16, '2025-01-02 09:30:00', 1, 'https://picsum.photos/id/1016/400/400'),
 (18, 'Livre 9', 'Auteur 9', 'Description simple du livre 9.', 18, '2025-01-02 09:40:00', 1, 'https://picsum.photos/id/1018/400/400'),
 (19, 'Livre 10', 'Auteur 10', 'Description simple du livre 10.', 19, '2025-01-02 09:45:00', 0, 'https://picsum.photos/id/1019/400/400'),
-(20, 'Livre 11', 'Auteur 11', 'Description simple du livre 11.', 20, '2025-01-02 09:50:00', 1, 'https://picsum.photos/id/1020/400/400'),
-(21, 'Livre 12', 'Auteur 12', 'Description simple du livre 12.', 21, '2025-01-02 09:55:00', 1, 'https://picsum.photos/id/1021/400/400');
+(20, 'Livre 11', 'Auteur 11', 'Description simple du livre 11.', 23, '2025-01-02 09:50:00', 1, 'https://picsum.photos/id/1020/400/400'),
+(21, 'Livre 12', 'Auteur 12', 'Description simple du livre 12.', 22, '2025-01-02 09:55:00', 0, 'https://picsum.photos/id/1021/400/400');
 
 -- --------------------------------------------------------
 
@@ -79,16 +79,8 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`message_id`, `sender_id`, `receiver_id`, `message_content`, `date_time`, `is_read`) VALUES
-(1, 2, 4, 'ar', '2025-12-15 14:39:59', 1),
-(2, 4, 2, 'ae', '2025-12-15 14:40:24', 1),
-(3, 2, 3, 'ar', '2025-12-18 10:03:53', 0),
-(4, 2, 3, 'ar', '2025-12-22 08:47:05', 0),
-(5, 2, 3, 'a', '2025-12-22 14:28:05', 0),
-(6, 2, 3, 'a', '2025-12-22 14:28:05', 0),
-(7, 2, 3, 'a', '2025-12-22 14:28:08', 0),
-(8, 4, 2, 'ar', '2025-12-26 08:35:11', 1),
-(9, 2, 4, 'ae', '2025-12-26 08:46:41', 1),
-(10, 4, 2, 'ar', '2025-12-26 08:47:09', 1);
+(16, 23, 22, 'message pour aryan', '2026-01-15 10:22:09', 1),
+(17, 22, 23, 'message pour Paul', '2026-01-15 10:22:39', 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +113,9 @@ INSERT INTO `user` (`user_id`, `username`, `email`, `password_hash`, `date_time`
 (18, 'igor', 'igor@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2025-01-01 09:40:00', 'https://picsum.photos/id/208/400/400'),
 (19, 'julie', 'julie@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2025-01-01 09:45:00', 'https://picsum.photos/id/209/400/400'),
 (20, 'khaled', 'khaled@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2025-01-01 09:50:00', 'https://picsum.photos/id/210/400/400'),
-(21, 'lea', 'lea@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2025-01-01 09:55:00', 'https://picsum.photos/id/211/400/400');
+(21, 'lea', 'lea@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2025-01-01 09:55:00', 'https://picsum.photos/id/211/400/400'),
+(22, 'aryan', 'aryan@gmail.com', '$2y$10$sIodSbW6smHlQcHAzbmk6.HLVolZhRQD1dJwF979EEWkJTeVhknVC', '2026-01-15 10:13:21', 'uploads/9c74861d7294ef8a24dc934c2d579059.jpg'),
+(23, 'paul', 'paul@gmail.com', '$2y$10$JDPCDWNqm81lq6IM3slgd.JU.AwyjIJZ75d1uk4OmU8C.y9GAVCXi', '2026-01-15 10:19:27', '');
 
 --
 -- Index pour les tables déchargées
@@ -131,7 +125,8 @@ INSERT INTO `user` (`user_id`, `username`, `email`, `password_hash`, `date_time`
 -- Index pour la table `book`
 --
 ALTER TABLE `book`
-  ADD PRIMARY KEY (`book_id`);
+  ADD PRIMARY KEY (`book_id`),
+  ADD KEY `fk_book_owner` (`owner_id`);
 
 --
 -- Index pour la table `message`
@@ -161,17 +156,23 @@ ALTER TABLE `book`
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `book`
+--
+ALTER TABLE `book`
+  ADD CONSTRAINT `fk_book_owner` FOREIGN KEY (`owner_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `message`
